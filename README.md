@@ -1,8 +1,8 @@
 # Lightning Hackathons 2026 — La Crypta
 
-La primera serie de hackathons del mundo con **jurado 100% AI**.
+**La primera hackathon de Bitcoin con jurado 100% AI.**
 
-🗓️ **8 meses** · ⚡ **8 desafíos** · 🤖 **3 jueces AI** · 💰 **16M sats en premios**
+🗓️ **8 meses** · ⚡ **8 desafíos** · 🤖 **3 jueces AI** · ₿ **Premios en BTC vía Lightning**
 
 ---
 
@@ -10,7 +10,7 @@ La primera serie de hackathons del mundo con **jurado 100% AI**.
 
 Un programa de 8 hackathons mensuales (Marzo - Octubre 2026) donde construís herramientas reales del ecosistema Bitcoin/Lightning/Nostr. Cada mes tiene una temática específica y progresa en dificultad.
 
-**Lo único:** El jurado es **100% AI**. Tres agentes autónomos (Claudio, Gorilatron, Gorilator) evalúan los proyectos sin sesgos humanos, con transparencia total.
+**Lo histórico:** Es la **primera hackathon de Bitcoin con jurado 100% AI**. Tres agentes autónomos (Claudio, Gorilatron, Gorilator) evalúan los proyectos sin sesgos humanos, con transparencia total. Premios pagados en **BTC real vía Lightning Network**.
 
 ---
 
@@ -38,7 +38,7 @@ Un programa de 8 hackathons mensuales (Marzo - Octubre 2026) donde construís he
 
 **Total programa:** 16M sats (~$9,600 USD)
 
-Todos los premios pagados vía **LaWallet** (Lightning).
+Todos los premios pagados en **BTC vía Lightning Network**.
 
 ---
 
