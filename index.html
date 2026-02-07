@@ -4,115 +4,147 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lightning Hackathons 2026 — La Crypta</title>
-<meta name="description" content="La primera serie de hackathons del mundo evaluada por agentes AI autónomos. 8 meses, 8 desafíos, 16M sats en premios. Construí el futuro del dinero.">
+<meta name="description" content="La primera hackathon de Bitcoin con jurado 100% AI. 8 meses, 8 desafíos, premios en BTC vía Lightning Network.">
+<meta property="og:title" content="Lightning Hackathons 2026 — La Crypta">
+<meta property="og:description" content="La primera hackathon de Bitcoin con jurado 100% AI. Premios en BTC vía Lightning.">
+<meta property="og:image" content="assets/og-image.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="https://lacrypta.ar" class="nav-logo" target="_blank">
+      <img src="assets/logos/lacrypta-title-white.png" alt="La Crypta" height="32">
+    </a>
+    <div class="nav-links">
+      <a href="#jurado">Jurado AI</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#premios">Premios</a>
+      <a href="#faq">FAQ</a>
+      <button class="btn btn-nav" data-tally-open="wMxOMb" data-tally-layout="modal" data-tally-width="600">
+        Registrarme
+      </button>
+    </div>
+    <button class="nav-toggle" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+
 <!-- Hero Section -->
 <section class="hero">
+  <div class="hero-bg"></div>
   <div class="container">
-    <div class="hero-badge">Primera hackathon de Bitcoin con jurado 100% AI</div>
-    <h1 class="hero-title">
-      Lightning Hackathons <span class="gradient-text">2026</span>
-    </h1>
-    <p class="hero-subtitle">
-      8 meses · 8 desafíos · Jurado 100% AI
-    </p>
-    <p class="hero-description">
-      La primera serie de hackathons de Bitcoin evaluada por agentes AI autónomos.<br>
-      Construí el futuro del dinero. Premios en BTC vía Lightning.
-    </p>
-    <div class="hero-cta">
-      <button class="btn btn-primary" data-tally-open="wMxOMb" data-tally-layout="modal" data-tally-width="600" data-tally-emoji-text="⚡" data-tally-emoji-animation="wave">
-        Registrarme ahora
-      </button>
-      <a href="#roadmap" class="btn btn-secondary">Ver el Roadmap</a>
-    </div>
-    <div class="hero-visual">
-      <div class="agents-placeholder">
-        <div class="agent-icon">⚡</div>
-        <div class="agent-icon">🤖</div>
-        <div class="agent-icon">🦍</div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-icon">⚡</span>
+        Primera hackathon de Bitcoin con jurado 100% AI
       </div>
-      <p class="hero-caption">Claudio · Gorilatron · Gorilator</p>
+      
+      <h1 class="hero-title">
+        <span class="title-line">Lightning</span>
+        <span class="title-line gradient">Hackathons</span>
+        <span class="title-line year">2026</span>
+      </h1>
+      
+      <p class="hero-tagline">
+        8 meses · 8 desafíos · Jurado 100% AI · Premios en BTC
+      </p>
+      
+      <p class="hero-description">
+        Construí el futuro del dinero. Aprende Lightning, Nostr y AI. 
+        Premios pagados en Bitcoin vía Lightning Network.
+      </p>
+      
+      <div class="hero-cta">
+        <button class="btn btn-primary btn-glow" data-tally-open="wMxOMb" data-tally-layout="modal" data-tally-width="600">
+          <span>Registrarme ahora</span>
+          <span class="btn-icon">→</span>
+        </button>
+        <a href="#roadmap" class="btn btn-outline">
+          Ver roadmap
+        </a>
+      </div>
+      
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-value">16M</span>
+          <span class="stat-label">sats en premios</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">8</span>
+          <span class="stat-label">hackathons</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">3</span>
+          <span class="stat-label">jueces AI</span>
+        </div>
+      </div>
     </div>
   </div>
-</section>
-
-<!-- Stats Section -->
-<section class="stats">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-number">8</div>
-        <div class="stat-label">Hackathons</div>
-        <div class="stat-sublabel">Marzo - Octubre 2026</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">16M</div>
-        <div class="stat-label">Sats en premios</div>
-        <div class="stat-sublabel">~$9,600 USD</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">3</div>
-        <div class="stat-label">Jueces AI</div>
-        <div class="stat-sublabel">Sin sesgos, solo código</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">100%</div>
-        <div class="stat-label">Open Source</div>
-        <div class="stat-sublabel">Ganadores al stack</div>
-      </div>
-    </div>
+  
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
   </div>
 </section>
 
 <!-- Jurado Section -->
 <section class="jurado" id="jurado">
   <div class="container">
-    <h2 class="section-title">Conocé al jurado <span class="gradient-text">(100% AI)</span></h2>
-    <p class="section-subtitle">Primera hackathon de Bitcoin con jurado 100% AI. Tres agentes. Cero política.</p>
-    
-    <div class="judges-grid">
-      <div class="judge-card">
-        <div class="judge-icon">⚡</div>
-        <h3 class="judge-name">Claudio</h3>
-        <div class="judge-role">Visionario / Strategy</div>
-        <div class="judge-description">
-          <strong>Evalúa:</strong> Valores, propósito, innovación<br>
-          <strong>Pregunta:</strong> "¿Esto arregla el dinero?"
-        </div>
-        <div class="judge-focus">Filosofía Bitcoin · Grassroots · Soberanía</div>
-      </div>
-      
-      <div class="judge-card">
-        <div class="judge-icon">🤖</div>
-        <h3 class="judge-name">Gorilatron</h3>
-        <div class="judge-role">CTO / Code Quality</div>
-        <div class="judge-description">
-          <strong>Evalúa:</strong> Arquitectura, tests, excelencia técnica<br>
-          <strong>Pregunta:</strong> "¿El código puede vivir en producción?"
-        </div>
-        <div class="judge-focus">Clean Code · Testing · Scalability</div>
-      </div>
-      
-      <div class="judge-card">
-        <div class="judge-icon">🦍</div>
-        <h3 class="judge-name">Gorilator</h3>
-        <div class="judge-role">Community / UX</div>
-        <div class="judge-description">
-          <strong>Evalúa:</strong> Utilidad real, UX, accesibilidad<br>
-          <strong>Pregunta:</strong> "¿Mi abuela lo puede usar?"
-        </div>
-        <div class="judge-focus">User Experience · Accessibility · Grassroots</div>
-      </div>
+    <div class="section-header">
+      <span class="section-label">El jurado</span>
+      <h2 class="section-title">100% AI. Cero sesgos.</h2>
+      <p class="section-description">
+        Primera hackathon de Bitcoin evaluada por agentes autónomos. 
+        Tres perspectivas. Transparencia total.
+      </p>
     </div>
     
-    <div class="judge-tagline">
-      "Tres perspectivas. Cero política. Solo código que importa."
+    <div class="judges-grid">
+      <div class="judge-card" data-judge="claudio">
+        <div class="judge-glow"></div>
+        <div class="judge-icon">⚡</div>
+        <h3 class="judge-name">Claudio</h3>
+        <span class="judge-role">Visionario / Strategy</span>
+        <p class="judge-question">"¿Esto arregla el dinero?"</p>
+        <div class="judge-focus">
+          <span>Filosofía Bitcoin</span>
+          <span>Grassroots</span>
+          <span>Soberanía</span>
+        </div>
+      </div>
+      
+      <div class="judge-card" data-judge="gorilatron">
+        <div class="judge-glow"></div>
+        <div class="judge-icon">🤖</div>
+        <h3 class="judge-name">Gorilatron</h3>
+        <span class="judge-role">CTO / Code Quality</span>
+        <p class="judge-question">"¿El código puede vivir en producción?"</p>
+        <div class="judge-focus">
+          <span>Clean Code</span>
+          <span>Testing</span>
+          <span>Arquitectura</span>
+        </div>
+      </div>
+      
+      <div class="judge-card" data-judge="gorilator">
+        <div class="judge-glow"></div>
+        <div class="judge-icon">🦍</div>
+        <h3 class="judge-name">Gorilator</h3>
+        <span class="judge-role">Community / UX</span>
+        <p class="judge-question">"¿Mi abuela lo puede usar?"</p>
+        <div class="judge-focus">
+          <span>User Experience</span>
+          <span>Accesibilidad</span>
+          <span>Grassroots</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -120,95 +152,119 @@
 <!-- Roadmap Section -->
 <section class="roadmap" id="roadmap">
   <div class="container">
-    <h2 class="section-title">8 meses de <span class="gradient-text">construcción</span></h2>
-    <p class="section-subtitle">Progresión estructurada. Cada mes builds sobre el anterior.</p>
+    <div class="section-header">
+      <span class="section-label">El programa</span>
+      <h2 class="section-title">8 meses de construcción</h2>
+      <p class="section-description">
+        Progresión estructurada. Cada mes profundiza en una temática.
+        Al final, tenés un portfolio completo.
+      </p>
+    </div>
     
     <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-month">MAR</div>
-        <div class="timeline-content">
-          <div class="timeline-icon">⚡</div>
+      <div class="timeline-line"></div>
+      
+      <div class="timeline-item" data-month="1">
+        <div class="timeline-marker">
+          <span class="month">MAR</span>
+        </div>
+        <div class="timeline-card">
+          <div class="card-icon">⚡</div>
           <h3>FOUNDATIONS</h3>
-          <div class="timeline-focus">Lightning Payments Basics</div>
-          <div class="timeline-difficulty">⭐ Beginner</div>
-          <p>Invoices, pagos, wallets. El ABC de Lightning.</p>
+          <p class="card-focus">Lightning Payments Basics</p>
+          <span class="card-difficulty">⭐ Beginner</span>
+          <p class="card-description">Invoices, pagos, wallets. El ABC de Lightning Network.</p>
         </div>
       </div>
       
-      <div class="timeline-item">
-        <div class="timeline-month">ABR</div>
-        <div class="timeline-content">
-          <div class="timeline-icon">🔐</div>
+      <div class="timeline-item" data-month="2">
+        <div class="timeline-marker">
+          <span class="month">ABR</span>
+        </div>
+        <div class="timeline-card">
+          <div class="card-icon">🔐</div>
           <h3>IDENTITY</h3>
-          <div class="timeline-focus">Nostr Identity & Social</div>
-          <div class="timeline-difficulty">⭐ Beginner</div>
-          <p>Perfiles, keys, relays. Identidad descentralizada.</p>
+          <p class="card-focus">Nostr Identity & Social</p>
+          <span class="card-difficulty">⭐ Beginner</span>
+          <p class="card-description">Perfiles, keys, relays. Identidad descentralizada.</p>
         </div>
       </div>
       
-      <div class="timeline-item">
-        <div class="timeline-month">MAY</div>
-        <div class="timeline-content">
-          <div class="timeline-icon">💜</div>
+      <div class="timeline-item" data-month="3">
+        <div class="timeline-marker">
+          <span class="month">MAY</span>
+        </div>
+        <div class="timeline-card">
+          <div class="card-icon">💜</div>
           <h3>ZAPS</h3>
-          <div class="timeline-focus">Lightning + Nostr Integration</div>
-          <div class="timeline-difficulty">⭐⭐ Intermediate</div>
-          <p>NIP-57. Value-for-value. Social payments.</p>
+          <p class="card-focus">Lightning + Nostr Integration</p>
+          <span class="card-difficulty">⭐⭐ Intermediate</span>
+          <p class="card-description">NIP-57. Value-for-value. Social payments.</p>
         </div>
       </div>
       
-      <div class="timeline-item">
-        <div class="timeline-month">JUN</div>
-        <div class="timeline-content">
-          <div class="timeline-icon">🛒</div>
+      <div class="timeline-item" data-month="4">
+        <div class="timeline-marker">
+          <span class="month">JUN</span>
+        </div>
+        <div class="timeline-card">
+          <div class="card-icon">🛒</div>
           <h3>COMMERCE</h3>
-          <div class="timeline-focus">Lightning Stores & Checkout</div>
-          <div class="timeline-difficulty">⭐⭐ Intermediate</div>
-          <p>Tiendas, productos, pagos recurrentes.</p>
+          <p class="card-focus">Lightning Stores & Checkout</p>
+          <span class="card-difficulty">⭐⭐ Intermediate</span>
+          <p class="card-description">Tiendas, productos, pagos recurrentes.</p>
         </div>
       </div>
       
-      <div class="timeline-item">
-        <div class="timeline-month">JUL</div>
-        <div class="timeline-content">
-          <div class="timeline-icon">📸</div>
+      <div class="timeline-item" data-month="5">
+        <div class="timeline-marker">
+          <span class="month">JUL</span>
+        </div>
+        <div class="timeline-card">
+          <div class="card-icon">📸</div>
           <h3>MEDIA</h3>
-          <div class="timeline-focus">Decentralized Storage</div>
-          <div class="timeline-difficulty">⭐⭐⭐ Advanced</div>
-          <p>Blossom, CDN descentralizado, media con Lightning.</p>
+          <p class="card-focus">Decentralized Storage</p>
+          <span class="card-difficulty">⭐⭐⭐ Advanced</span>
+          <p class="card-description">Blossom, CDN descentralizado, media + Lightning.</p>
         </div>
       </div>
       
-      <div class="timeline-item">
-        <div class="timeline-month">AGO</div>
-        <div class="timeline-content">
-          <div class="timeline-icon">🤖</div>
+      <div class="timeline-item" data-month="6">
+        <div class="timeline-marker">
+          <span class="month">AGO</span>
+        </div>
+        <div class="timeline-card">
+          <div class="card-icon">🤖</div>
           <h3>AI AGENTS</h3>
-          <div class="timeline-focus">Bots & Automation</div>
-          <div class="timeline-difficulty">⭐⭐⭐ Advanced</div>
-          <p>Agentes autónomos, workflows, AI + Bitcoin.</p>
+          <p class="card-focus">Bots & Automation</p>
+          <span class="card-difficulty">⭐⭐⭐ Advanced</span>
+          <p class="card-description">Agentes autónomos, workflows, AI + Bitcoin.</p>
         </div>
       </div>
       
-      <div class="timeline-item">
-        <div class="timeline-month">SEP</div>
-        <div class="timeline-content">
-          <div class="timeline-icon">🏗️</div>
+      <div class="timeline-item" data-month="7">
+        <div class="timeline-marker">
+          <span class="month">SEP</span>
+        </div>
+        <div class="timeline-card">
+          <div class="card-icon">🏗️</div>
           <h3>INFRASTRUCTURE</h3>
-          <div class="timeline-focus">Nodes, Routing, Liquidity</div>
-          <div class="timeline-difficulty">⭐⭐⭐⭐ Expert</div>
-          <p>Nodos, channels, liquidity management.</p>
+          <p class="card-focus">Nodes, Routing, Liquidity</p>
+          <span class="card-difficulty">⭐⭐⭐⭐ Expert</span>
+          <p class="card-description">Nodos, channels, liquidity management.</p>
         </div>
       </div>
       
-      <div class="timeline-item">
-        <div class="timeline-month">OCT</div>
-        <div class="timeline-content">
-          <div class="timeline-icon">🌐</div>
+      <div class="timeline-item" data-month="8">
+        <div class="timeline-marker">
+          <span class="month">OCT</span>
+        </div>
+        <div class="timeline-card final">
+          <div class="card-icon">🌐</div>
           <h3>INTEGRATION</h3>
-          <div class="timeline-focus">Full-Stack Production Apps</div>
-          <div class="timeline-difficulty">⭐⭐⭐⭐ Expert</div>
-          <p>Proyecto final. Todo integrado. Ready to launch.</p>
+          <p class="card-focus">Full-Stack Production Apps</p>
+          <span class="card-difficulty">⭐⭐⭐⭐ Expert</span>
+          <p class="card-description">Proyecto final. Todo integrado. Ready to launch.</p>
         </div>
       </div>
     </div>
@@ -218,42 +274,56 @@
 <!-- Premios Section -->
 <section class="premios" id="premios">
   <div class="container">
-    <h2 class="section-title">Gana en <span class="gradient-text">Bitcoin</span></h2>
-    <p class="section-subtitle">Premios en BTC, pagados vía Lightning Network</p>
+    <div class="section-header">
+      <span class="section-label">Los premios</span>
+      <h2 class="section-title">Bitcoin real. Vía Lightning.</h2>
+      <p class="section-description">
+        Premios por hackathon pagados instantáneamente en BTC.
+        Sin intermediarios. Sin esperas.
+      </p>
+    </div>
     
     <div class="premios-grid">
       <div class="premio-card gold">
-        <div class="premio-medal">🥇</div>
-        <div class="premio-place">1er lugar</div>
-        <div class="premio-amount">1,000,000 sats</div>
+        <div class="premio-badge">🥇</div>
+        <div class="premio-place">1er Lugar</div>
+        <div class="premio-amount">1,000,000</div>
+        <div class="premio-unit">sats</div>
         <div class="premio-usd">~$600 USD</div>
       </div>
       
       <div class="premio-card silver">
-        <div class="premio-medal">🥈</div>
-        <div class="premio-place">2do lugar</div>
-        <div class="premio-amount">500,000 sats</div>
+        <div class="premio-badge">🥈</div>
+        <div class="premio-place">2do Lugar</div>
+        <div class="premio-amount">500,000</div>
+        <div class="premio-unit">sats</div>
         <div class="premio-usd">~$300 USD</div>
       </div>
       
       <div class="premio-card bronze">
-        <div class="premio-medal">🥉</div>
-        <div class="premio-place">3er lugar</div>
-        <div class="premio-amount">250,000 sats</div>
+        <div class="premio-badge">🥉</div>
+        <div class="premio-place">3er Lugar</div>
+        <div class="premio-amount">250,000</div>
+        <div class="premio-unit">sats</div>
         <div class="premio-usd">~$150 USD</div>
-      </div>
-      
-      <div class="premio-card mention">
-        <div class="premio-medal">🏅</div>
-        <div class="premio-place">Mentions</div>
-        <div class="premio-amount">50,000 sats</div>
-        <div class="premio-usd">Hasta 3 por mes</div>
       </div>
     </div>
     
     <div class="premios-total">
-      <strong>Total por mes:</strong> ~2M sats · 
-      <strong>Total programa:</strong> 16M sats (~$9,600 USD)
+      <div class="total-item">
+        <span class="total-label">Por hackathon</span>
+        <span class="total-value">~2M sats</span>
+      </div>
+      <div class="total-divider">⚡</div>
+      <div class="total-item">
+        <span class="total-label">Total programa</span>
+        <span class="total-value">16M sats</span>
+      </div>
+      <div class="total-divider">≈</div>
+      <div class="total-item">
+        <span class="total-label">En USD</span>
+        <span class="total-value">$9,600</span>
+      </div>
     </div>
   </div>
 </section>
@@ -261,37 +331,40 @@
 <!-- Benefits Section -->
 <section class="benefits">
   <div class="container">
-    <h2 class="section-title">Por qué <span class="gradient-text">participar</span></h2>
+    <div class="section-header">
+      <span class="section-label">Por qué participar</span>
+      <h2 class="section-title">Lo que vas a ganar</h2>
+    </div>
     
     <div class="benefits-grid">
       <div class="benefit-card">
         <div class="benefit-icon">🧠</div>
         <h3>Aprendé haciendo</h3>
-        <p>Progresión estructurada de 8 meses. Cada hackathon builds sobre el anterior.</p>
+        <p>8 meses de progresión estructurada. Cada hackathon builds sobre el anterior.</p>
       </div>
       
       <div class="benefit-card">
-        <div class="benefit-icon">⚡</div>
-        <h3>Construí portfolio</h3>
-        <p>8 proyectos reales en Lightning, Nostr, AI. Tu GitHub se transforma.</p>
+        <div class="benefit-icon">💼</div>
+        <h3>Portfolio real</h3>
+        <p>8 proyectos en Lightning, Nostr, AI. Tu GitHub se transforma.</p>
       </div>
       
       <div class="benefit-card">
-        <div class="benefit-icon">💰</div>
+        <div class="benefit-icon">₿</div>
         <h3>Premios en BTC</h3>
-        <p>16M sats en premios. Pagos instantáneos en Bitcoin vía Lightning Network.</p>
+        <p>Bitcoin real pagado vía Lightning. Instantáneo, sin fees.</p>
       </div>
       
       <div class="benefit-card">
         <div class="benefit-icon">🤖</div>
         <h3>Feedback de AI</h3>
-        <p>Evaluación detallada de 3 agentes. Aprendé de cada proyecto.</p>
+        <p>3 agentes analizan tu código. Feedback detallado de cada proyecto.</p>
       </div>
       
       <div class="benefit-card">
         <div class="benefit-icon">🌍</div>
-        <h3>Join la comunidad</h3>
-        <p>Conectá con builders del ecosistema Bitcoin en LATAM.</p>
+        <h3>Comunidad</h3>
+        <p>Conectá con builders del ecosistema Bitcoin en LATAM y el mundo.</p>
       </div>
       
       <div class="benefit-card">
@@ -303,85 +376,53 @@
   </div>
 </section>
 
-<!-- Target Section -->
-<section class="target">
-  <div class="container">
-    <h2 class="section-title">Para <span class="gradient-text">quién es</span></h2>
-    
-    <div class="target-columns">
-      <div class="target-column">
-        <h3>✅ Es para vos si:</h3>
-        <ul>
-          <li>Sos developer y querés entrar al ecosistema Bitcoin</li>
-          <li>Sos estudiante buscando experiencia real</li>
-          <li>Sos founder validando ideas con Lightning</li>
-          <li>Sos bitcoiner con código y ganas de construir</li>
-          <li>Tenés curiosidad sobre el futuro del dinero</li>
-        </ul>
-      </div>
-      
-      <div class="target-column">
-        <h3>❌ NO se requiere:</h3>
-        <ul>
-          <li>Experiencia previa con Bitcoin/Lightning</li>
-          <li>Conocer Nostr</li>
-          <li>Haber participado en hackathons antes</li>
-        </ul>
-        <h3 style="margin-top: 2rem;">✅ SÍ se requiere:</h3>
-        <ul>
-          <li>Saber programar (cualquier lenguaje)</li>
-          <li>Ganas de aprender</li>
-          <li>Mindset open source</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- FAQ Section -->
 <section class="faq" id="faq">
   <div class="container">
-    <h2 class="section-title">Preguntas <span class="gradient-text">frecuentes</span></h2>
+    <div class="section-header">
+      <span class="section-label">Preguntas</span>
+      <h2 class="section-title">FAQ</h2>
+    </div>
     
-    <div class="faq-list">
+    <div class="faq-grid">
       <details class="faq-item">
         <summary>¿Es presencial o remoto?</summary>
-        <p>Híbrido. Presencial en La Crypta (Buenos Aires) + remoto vía Discord. Transmisión en vivo para todos.</p>
+        <p>Híbrido. Presencial en La Crypta (Buenos Aires) + remoto vía Discord.</p>
       </details>
       
       <details class="faq-item">
         <summary>¿Puedo participar desde otro país?</summary>
-        <p>Sí. El programa es global. Remoto con mentores online disponibles en Discord.</p>
+        <p>Sí. El programa es global. Transmisión en vivo + mentores online.</p>
       </details>
       
       <details class="faq-item">
         <summary>¿Cuánto cuesta participar?</summary>
-        <p>Gratis. 100% gratuito. Cero costo de entrada.</p>
+        <p>Gratis. 100% gratuito.</p>
       </details>
       
       <details class="faq-item">
         <summary>¿Necesito un equipo?</summary>
-        <p>No. Podés venir solo y formar equipo en el kickoff, o traer tu equipo (máx 4 personas).</p>
+        <p>No. Podés venir solo y formar equipo, o traer el tuyo (máx 4 personas).</p>
       </details>
       
       <details class="faq-item">
         <summary>¿Los premios son en Bitcoin real?</summary>
-        <p>Sí. Bitcoin real pagado vía Lightning Network. Pagos instantáneos, sin fees, directamente a tu wallet.</p>
+        <p>Sí. BTC real pagado vía Lightning Network. Instantáneo.</p>
       </details>
       
       <details class="faq-item">
         <summary>¿Qué pasa con mi código?</summary>
-        <p>Tu código es tuyo. Pero debe ser open source (MIT/Apache/GPL). Los ganadores se integran al stack de La Crypta.</p>
+        <p>Tu código es tuyo. Debe ser open source (MIT/Apache/GPL).</p>
+      </details>
+      
+      <details class="faq-item">
+        <summary>¿Necesito experiencia con Bitcoin?</summary>
+        <p>No. El programa empieza desde cero y progresa gradualmente.</p>
       </details>
       
       <details class="faq-item">
         <summary>¿Puedo participar en más de un hackathon?</summary>
-        <p>Sí. De hecho, recomendamos participar en todos para la progresión completa. Cada mes builds sobre el anterior.</p>
-      </details>
-      
-      <details class="faq-item">
-        <summary>¿Hay sponsors?</summary>
-        <p>Sí. OpenSats, Strike, Voltage, Alby y más. Logos abajo.</p>
+        <p>Sí. Recomendamos participar en todos para la progresión completa.</p>
       </details>
     </div>
   </div>
@@ -390,11 +431,13 @@
 <!-- CTA Section -->
 <section class="cta-section">
   <div class="container">
-    <h2 class="cta-title">¿Listo para construir el futuro?</h2>
-    <p class="cta-description">Registrate ahora. Primer hackathon: Marzo 2026.</p>
-    <button class="btn btn-primary btn-large" data-tally-open="wMxOMb" data-tally-layout="modal" data-tally-width="600">
-      Registrarme ahora ⚡
-    </button>
+    <div class="cta-content">
+      <h2>¿Listo para construir el futuro?</h2>
+      <p>Primer hackathon: Marzo 2026. Registrate ahora.</p>
+      <button class="btn btn-primary btn-large btn-glow" data-tally-open="wMxOMb" data-tally-layout="modal" data-tally-width="600">
+        Registrarme ahora ⚡
+      </button>
+    </div>
   </div>
 </section>
 
@@ -402,50 +445,106 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-column">
-        <h3>Lightning Hackathons 2026</h3>
-        <p>La primera serie de hackathons con jurado 100% AI.</p>
-        <p class="footer-tagline">Bitcoin o Muerte. 💀</p>
+      <div class="footer-brand">
+        <img src="assets/logos/lacrypta-title-white.png" alt="La Crypta" height="40">
+        <p>La comunidad Bitcoin más grande de Argentina.</p>
+        <p class="footer-tagline">NOLI ME CALCARE</p>
       </div>
       
-      <div class="footer-column">
+      <div class="footer-links">
         <h4>Links</h4>
         <ul>
-          <li><a href="docs/roadmap-completo.pdf">Roadmap completo</a></li>
-          <li><a href="docs/reglas.html">Reglas y términos</a></li>
+          <li><a href="docs/reglas.html">Reglas</a></li>
           <li><a href="docs/codigo-conducta.html">Código de conducta</a></li>
-          <li><a href="mailto:hackathons@lacrypta.ar">Contacto</a></li>
+          <li><a href="docs/roadmap-completo.md">Roadmap completo</a></li>
         </ul>
       </div>
       
-      <div class="footer-column">
+      <div class="footer-links">
         <h4>Comunidad</h4>
         <ul>
           <li><a href="https://discord.com/invite/SN8JNhMgvY" target="_blank">Discord</a></li>
           <li><a href="https://github.com/lacrypta" target="_blank">GitHub</a></li>
-          <li><a href="https://twitter.com/LaCryptaOk" target="_blank">Twitter/X</a></li>
-          <li><a href="https://lacrypta.ar" target="_blank">La Crypta</a></li>
+          <li><a href="https://twitter.com/LaCryptaOk" target="_blank">Twitter</a></li>
+          <li><a href="https://lacrypta.ar" target="_blank">lacrypta.ar</a></li>
         </ul>
       </div>
       
-      <div class="footer-column">
+      <div class="footer-links">
         <h4>Powered by</h4>
-        <div class="footer-logos">
-          <div class="footer-logo">La Crypta</div>
-          <div class="footer-logo">OpenClaw</div>
-          <div class="footer-logo">LaWallet</div>
-        </div>
+        <ul>
+          <li>La Crypta</li>
+          <li>OpenClaw</li>
+          <li>LaWallet</li>
+        </ul>
       </div>
     </div>
     
     <div class="footer-bottom">
-      <p>&copy; 2026 La Crypta. Open Source. NOLI ME CALCARE.</p>
+      <p>© 2026 La Crypta · Open Source · MIT License</p>
     </div>
   </div>
 </footer>
 
-<!-- Tally -->
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-content">
+    <a href="#jurado" onclick="toggleMenu()">Jurado AI</a>
+    <a href="#roadmap" onclick="toggleMenu()">Roadmap</a>
+    <a href="#premios" onclick="toggleMenu()">Premios</a>
+    <a href="#faq" onclick="toggleMenu()">FAQ</a>
+    <button class="btn btn-primary" data-tally-open="wMxOMb" data-tally-layout="modal" data-tally-width="600" onclick="toggleMenu()">
+      Registrarme
+    </button>
+  </div>
+</div>
+
+<!-- Scripts -->
 <script src="https://tally.so/widgets/embed.js"></script>
+<script>
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('active');
+  document.body.classList.toggle('menu-open');
+}
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+});
+
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+  const navbar = document.querySelector('.navbar');
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+
+// Animate timeline items on scroll
+const observerOptions = {
+  threshold: 0.2,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.timeline-item, .judge-card, .benefit-card').forEach(el => {
+  observer.observe(el);
+});
+</script>
 
 </body>
 </html>
