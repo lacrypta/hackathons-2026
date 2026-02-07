@@ -473,6 +473,53 @@ section {
   margin-bottom: 20px;
 }
 
+.judge-avatar {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--light-gray);
+  transition: border-color 0.3s ease;
+}
+
+.judge-card:hover .judge-avatar {
+  border-color: var(--primary);
+}
+
+.judge-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.judge-icon-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 64px;
+  background: var(--dark);
+}
+
+.judge-model {
+  margin-bottom: 16px;
+}
+
+.model-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  background: linear-gradient(135deg, rgba(0, 255, 157, 0.15) 0%, rgba(153, 69, 255, 0.15) 100%);
+  border: 1px solid rgba(0, 255, 157, 0.3);
+  border-radius: 100px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--primary);
+  letter-spacing: 0.5px;
+}
+
 .judge-name {
   font-family: var(--font-display);
   font-size: 28px;
