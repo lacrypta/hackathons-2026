@@ -662,6 +662,87 @@ section {
   line-height: 1.6;
 }
 
+/* ===== PILARES ===== */
+.pilares {
+  background: var(--dark);
+}
+
+.pilares-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.pilar-card {
+  background: var(--gray);
+  border: 1px solid var(--light-gray);
+  border-radius: 16px;
+  padding: 28px 24px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pilar-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pilar-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-4px);
+}
+
+.pilar-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 16px;
+}
+
+.pilar-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.pilar-card h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.pilar-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.pilar-card p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .pilares-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .pilares-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ===== PREMIOS ===== */
 .premios {
   background: var(--dark);
@@ -726,41 +807,73 @@ section {
   color: var(--muted);
 }
 
-.premios-total {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  padding: 32px;
-  background: var(--gray);
-  border: 1px solid var(--light-gray);
-  border-radius: 16px;
-  flex-wrap: wrap;
-}
-
-.total-item {
+.premios-hero {
   text-align: center;
+  padding: 48px 32px;
+  background: linear-gradient(135deg, rgba(0, 255, 157, 0.06) 0%, rgba(247, 147, 26, 0.06) 100%);
+  border: 2px solid var(--primary);
+  border-radius: 20px;
+  position: relative;
 }
 
-.total-label {
-  display: block;
+.premios-hero-label {
+  font-family: var(--font-mono);
   font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--muted);
+  letter-spacing: 3px;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+.premios-hero-amount {
+  font-family: var(--font-display);
+  font-size: 72px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
   margin-bottom: 4px;
 }
 
-.total-value {
-  font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 700;
+.premios-hero-unit {
+  font-family: var(--font-mono);
+  font-size: 18px;
   color: var(--primary);
+  margin-bottom: 8px;
 }
 
-.total-divider {
+.premios-hero-usd {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--bitcoin);
+  margin-bottom: 20px;
+}
+
+.premios-hero-detail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
   color: var(--muted);
-  font-size: 20px;
+}
+
+.premios-hero-dot {
+  width: 4px;
+  height: 4px;
+  background: var(--light-gray);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+@media (max-width: 600px) {
+  .premios-hero-amount {
+    font-size: 48px;
+  }
+  .premios-hero-usd {
+    font-size: 22px;
+  }
 }
 
 /* ===== BENEFITS ===== */
