@@ -69,6 +69,23 @@
       "tech": ["Alby SDK", "NWC", "LNURL", "WebLN", "Vite"],
       "status": "building",
       "submittedAt": "2026-03-08"
+    },
+    {
+      "id": "stacktris",
+      "name": "Stacktris",
+      "description": "Multiplayer Battle Tetris with betting over the lightning network",
+      "team": [
+        {
+          "name": "landaverdend",
+          "github": "landaverdend",
+          "role": "Lead Dev"
+        }
+      ],
+      "repo": "https://github.com/landaverdend/stacktris",
+      "demo": "",
+      "tech": ["React", "LDK", "Rust", "Typescript"],
+      "status": "building",
+      "submittedAt": "2026-03-08"
     }
   ],
   "_instructions": {
