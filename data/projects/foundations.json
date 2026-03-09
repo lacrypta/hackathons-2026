@@ -1,98 +1,195 @@
 {
-  "$schema": "../projects-schema.json",
-  "hackathon": "foundations",
-  "month": "Marzo 2026",
-  "projects": [
-    {
-      "id": "lightning-starter",
-      "name": "Lightning Starter Kit",
-      "description": "Template oficial para empezar. NWC, Lightning Address, LNURL, WebLN.",
-      "team": [
-        {
-          "name": "La Crypta",
-          "github": "lacrypta",
-          "role": "Organizers"
-        }
+   "$schema":"../projects-schema.json",
+   "hackathon":"foundations",
+   "month":"Marzo 2026",
+   "projects":[
+      {
+         "id":"lightning-starter",
+         "name":"Lightning Starter Kit",
+         "description":"Template oficial para empezar. NWC, Lightning Address, LNURL, WebLN.",
+         "team":[
+            {
+               "name":"La Crypta",
+               "github":"lacrypta",
+               "role":"Organizers"
+            }
+         ],
+         "repo":"https://github.com/lacrypta/lightning-starter",
+         "demo":"https://lightning-starter.vercel.app",
+         "tech":[
+            "Alby SDK",
+            "NWC",
+            "LNURL",
+            "WebLN",
+            "Vite"
+         ],
+         "status":"official",
+         "submittedAt":"2026-02-28"
+      },
+      {
+         "id":"proof-of-attendance-hdmp",
+         "name":"Proof of Attendance (HDMP)",
+         "description":"Sistema de reservas para eventos con depósito en Lightning Network. Pagás sats para reservar, si venís canjeás tu consumición, si no venís perdés la reserva. Elimina los no-shows con fricción mínima.",
+         "team":[
+            {
+               "name":"Lo0ker-Noma",
+               "github":"Lo0ker-Noma",
+               "role":"Lead Dev"
+            }
+         ],
+         "repo":"https://github.com/Lo0ker-Noma/Proof-of-attendance-HDMP",
+         "tech":[
+            "Lightning Address",
+            "Alby SDK",
+            "LNURL",
+            "WebLN",
+            "Vite"
+         ],
+         "status":"submitted",
+         "submittedAt":"2026-03-04"
+      },
+      {
+         "id":"sat-lotto-v2",
+         "name":"SatLotto V2",
+         "description":"Juego simple y elegante que usa NWC y LN. Proba tu suerte cada 21 bloques",
+         "team":[
+            {
+               "name":"Fierillo ",
+               "github":"Fierillo",
+               "role":"Lead Dev"
+            }
+         ],
+         "repo":"https://github.com/Fierillo/sat-lotto-v2",
+         "demo":"",
+         "tech":[
+            "Alby SDK",
+            "NWC",
+            "LNURL",
+            "WebLN",
+            "Vite"
+         ],
+         "status":"building",
+         "submittedAt":"2026-03-06"
+      },
+      {
+         "id":"Streamsats",
+         "name":"Streamsats",
+         "description":"Un juego de agilidad mental donde con micropagos por pistas dinámicas, compitiendo en tiempo real por un bote acumulado de sats.",
+         "team":[
+            {
+               "name":"Federico",
+               "github":"FedericoLuque",
+               "role":"Lead Dev"
+            }
+         ],
+         "repo":"https://github.com/FedericoLuque/Streamsats",
+         "demo":"",
+         "tech":[
+            "Alby SDK",
+            "NWC",
+            "LNURL",
+            "WebLN",
+            "Vite"
+         ],
+         "status":"building",
+         "submittedAt":"2026-03-08"
+      },
+      {
+         "id":"stacktris",
+         "name":"Stacktris",
+         "description":"Multiplayer Battle Tetris with betting over the lightning network",
+         "team":[
+            {
+               "name":"landaverdend",
+               "github":"landaverdend",
+               "role":"Lead Dev"
+            }
+         ],
+         "repo":"https://github.com/landaverdend/stacktris",
+         "demo":"",
+         "tech":[
+            "React",
+            "LDK",
+            "Rust",
+            "Typescript"
+         ],
+         "status":"building"
+      },
+      {
+         "id":"anirayo",
+         "name":"AniRayo",
+         "description":"Convierte cualquier smartphone Android con NFC en una terminal de cobro (POS) con magia NWC y 1-Toque.",
+         "team":[
+            {
+               "name":"CapScabio",
+               "github":"CapScabio",
+               "role":"Lead Dev"
+            }
+         ],
+         "repo":"https://github.com/CapScabio/Anirayo",
+         "demo":"",
+         "tech":[
+            "Web NFC",
+            "Alby SDK",
+            "NWC",
+            "Vite"
+         ],
+         "status":"submitted",
+         "submittedAt":"2026-03-08"
+      },
+      {
+         "id":"digital-card",
+         "name":"Digital card",
+         "description":"Tu tarjeta de presentación Bitcoin",
+         "team":[
+            {
+               "name":"negr0",
+               "github":"Negr087",
+               "role":"Lead Dev"
+            }
+         ],
+         "repo":"https://github.com/Negr087/digital-card",
+         "demo":"https://digitalcard-sigma.vercel.app/",
+         "tech":[
+            "Alby SDK",
+            "NWC",
+            "LNURL",
+            "WebLN",
+            "Vite"
+         ],
+         "status":"building",
+         "submittedAt":"2026-03-08"
+      }
+   ],
+   "_instructions":{
+      "howToAdd":"Para agregar tu proyecto, hacé un PR a este archivo agregando tu proyecto al array 'projects'.",
+      "requiredFields":[
+         "id",
+         "name",
+         "description",
+         "team",
+         "status"
       ],
-      "repo": "https://github.com/lacrypta/lightning-starter",
-      "demo": "https://lightning-starter.vercel.app",
-      "tech": ["Alby SDK", "NWC", "LNURL", "WebLN", "Vite"],
-      "status": "official",
-      "submittedAt": "2026-02-28"
-    },
-    {
-      "id": "proof-of-attendance-hdmp",
-      "name": "Proof of Attendance (HDMP)",
-      "description": "Sistema de reservas para eventos con depósito en Lightning Network. Pagás sats para reservar, si venís canjeás tu consumición, si no venís perdés la reserva. Elimina los no-shows con fricción mínima.",
-      "team": [
-        {
-          "name": "Lo0ker-Noma",
-          "github": "Lo0ker-Noma",
-          "role": "Lead Dev"
-        }
+      "optionalFields":[
+         "repo",
+         "demo",
+         "tech",
+         "submittedAt"
       ],
-      "repo": "https://github.com/Lo0ker-Noma/Proof-of-attendance-HDMP",
-      "tech": ["Lightning Address", "Alby SDK", "LNURL", "WebLN", "Vite"],
-      "status": "submitted",
-      "submittedAt": "2026-03-04"
-    },
-    {
-      "id": "sat-lotto-v2",
-      "name": "SatLotto V2",
-      "description": "Juego simple y elegante que usa NWC y LN. Proba tu suerte cada 21 bloques",
-      "team": [
-        {
-          "name": "Fierillo ",
-          "github": "Fierillo",
-          "role": "Lead Dev"
-        }
+      "statusOptions":[
+         "idea",
+         "building",
+         "submitted",
+         "finalist",
+         "winner",
+         "official"
       ],
-      "repo": "https://github.com/Fierillo/sat-lotto-v2",
-      "demo": "",
-      "tech": ["Alby SDK", "NWC", "LNURL", "WebLN", "Vite"],
-      "status": "building",
-      "submittedAt": "2026-03-06"
-    },
-    {
-      "id": "Streamsats",
-      "name": "Streamsats",
-      "description": "Un juego de agilidad mental donde con micropagos por pistas dinámicas, compitiendo en tiempo real por un bote acumulado de sats.",
-      "team": [
-        {
-          "name": "Federico",
-          "github": "FedericoLuque",
-          "role": "Lead Dev"
-        }
-      ],
-      "repo": "https://github.com/FedericoLuque/Streamsats",
-      "demo": "",
-      "tech": ["Alby SDK", "NWC", "LNURL", "WebLN", "Vite"],
-      "status": "building",
-      "submittedAt": "2026-03-08"
-    },
-    {
-      "id": "stacktris",
-      "name": "Stacktris",
-      "description": "Multiplayer Battle Tetris with betting over the lightning network",
-      "team": [
-        {
-          "name": "landaverdend",
-          "github": "landaverdend",
-          "role": "Lead Dev"
-        }
-      ],
-      "repo": "https://github.com/landaverdend/stacktris",
-      "demo": "",
-      "tech": ["React", "LDK", "Rust", "Typescript"],
-      "status": "building",
-      "submittedAt": "2026-03-08"
-    }
-  ],
-  "_instructions": {
-    "howToAdd": "Para agregar tu proyecto, hacé un PR a este archivo agregando tu proyecto al array 'projects'.",
-    "requiredFields": ["id", "name", "description", "team", "status"],
-    "optionalFields": ["repo", "demo", "tech", "submittedAt"],
-    "statusOptions": ["idea", "building", "submitted", "finalist", "winner", "official"],
-    "teamRoles": ["Lead Dev", "Dev", "Designer", "PM", "Organizers"]
-  }
+      "teamRoles":[
+         "Lead Dev",
+         "Dev",
+         "Designer",
+         "PM",
+         "Organizers"
+      ]
+   }
 }
