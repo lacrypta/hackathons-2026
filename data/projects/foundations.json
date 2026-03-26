@@ -418,6 +418,30 @@
       ],
       "status": "building",
       "submittedAt": "2026-03-18"
+    },
+    {
+      "id": "btcpay-mcp",
+      "name": "btcpay-mcp",
+      "description": "MCP server for BTCPay Server that lets AI agents create Lightning invoices, manage stores, track payments, and handle pull payments via the Greenfield API. 21 tools, pip-installable, zero hardcoded credentials.",
+      "team": [
+        {
+          "name": "toplyrnarfur",
+          "github": "toplyrnarfur",
+          "role": "Lead Dev"
+        }
+      ],
+      "repo": "https://github.com/toplyrnarfur/btcpay-mcp",
+      "demo": "https://pypi.org/project/btcpay-mcp/",
+      "tech": [
+        "Python",
+        "FastMCP",
+        "BTCPay Server",
+        "Lightning Network",
+        "MCP Protocol",
+        "REST API"
+      ],
+      "status": "submitted",
+      "submittedAt": "2026-03-25"
     }
   ],
   "_instructions": {
