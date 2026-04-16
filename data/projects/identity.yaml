@@ -173,3 +173,26 @@ projects:
       - Vercel
     status: building
     submittedAt: "2026-04-15"
+
+    - id: tamagostrich
+  name: Tamagostrich
+  description: "Mascota virtual (avestruz) que vive en el protocolo Nostr. Cuidá a Nori, tu Tamagotchi descentralizado con identidad propia."
+  team:
+    - name: Negr0
+      github: Negr087
+      role: Vibecoder
+  repo: https://github.com/Negr087/tamagostrich
+  demo: "https://tamagostrich.vercel.app"
+  tech:
+    - Nostr
+    - NIP-01
+    - NIP-07
+    - NIP-46
+    - NIP-58
+    - NIP-65
+    - NDK
+    - Next.js
+    - Three.js
+  status: submitted
+  submittedAt: "2026-04-16"
+
