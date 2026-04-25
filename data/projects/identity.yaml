@@ -105,7 +105,7 @@ projects:
         github: landaverdend
         role: Lead Dev
     repo: https://github.com/landaverdend/predictr
-    demo: ""
+    demo: "https://predictr.landaverde.io/"
     tech:
       - Bitcoin
       - Taproot
