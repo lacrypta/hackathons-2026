@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=1440, initial-scale=1.0">
 <title>HACKATHON IDENTITY 2026 — El Juicio Final</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -27,6 +27,9 @@
   }
 
   html, body {
+    /* Desktop landscape lock */
+    min-width: 1280px;
+    min-height: 720px;
     width: 100%; height: 100%;
     background: var(--bg);
     color: var(--white);
@@ -36,7 +39,12 @@
   }
 
   .deck {
-    width: 100vw; height: 100vh;
+    /* 16:9 presentation canvas */
+    min-width: 1280px;
+    min-height: 720px;
+    width: min(100vw, calc(100vh * 16 / 9));
+    height: min(100vh, calc(100vw * 9 / 16));
+    margin: 0 auto;
     position: relative;
     overflow: hidden;
   }
@@ -44,7 +52,7 @@
   .slide {
     position: absolute;
     inset: 0;
-    width: 100vw; height: 100vh;
+    width: 100%; height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
