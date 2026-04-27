@@ -991,6 +991,7 @@
   }
 
   .demo-shot { width: min(820px, 72vw); max-height: 46vh; object-fit: cover; border-radius: 18px; border: 1px solid rgba(247,147,26,0.28); box-shadow: 0 24px 80px rgba(0,0,0,.45), 0 0 40px rgba(247,147,26,.12); }
+  .award-preview { width: min(620px, 58vw); max-height: 25vh; object-fit: cover; border-radius: 14px; border: 1px solid rgba(247,147,26,0.24); box-shadow: 0 18px 50px rgba(0,0,0,.38); margin: 10px auto 4px; display:block; }
   .mini-grid { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:18px; width:min(980px,86vw); margin-top:28px; }
   .mini-card { padding:18px 20px; border:1px solid rgba(255,255,255,.10); border-radius:14px; background:rgba(255,255,255,.035); }
   .mini-card strong { color: var(--orange); }
@@ -1015,7 +1016,7 @@
   <div class="title-lg fade-in">La hackathon de<br><span class="accent">identidad soberana</span><br>de La Crypta.</div>
   <div class="numbers-grid">
     <div class="number-card fade-in"><div class="big-num">8</div><div class="num-label">proyectos evaluados</div></div>
-    <div class="number-card fade-in"><div class="big-num">6</div><div class="num-label">demos verificadas</div></div>
+    <div class="number-card fade-in"><div class="big-num">8</div><div class="num-label">demos encontradas</div></div>
     <div class="number-card fade-in"><div class="big-num">1</div><div class="num-label">starter excluido</div></div>
   </div>
   <div class="bottom-note fade-in">La consigna: identidad portable, reputación, Nostr, Lightning, cultura y herramientas que puedan vivir fuera de una base de datos corporativa.</div>
@@ -1028,10 +1029,10 @@
 <div class="project-item fade-in"><span class="proj-num">02</span><div class="proj-info"><div class="proj-name">Obelisk</div><div class="proj-team">Fabricio, Topolino</div></div></div>
 <div class="project-item fade-in"><span class="proj-num">03</span><div class="proj-info"><div class="proj-name">Tamagostrich</div><div class="proj-team">Negr0</div></div></div>
 <div class="project-item fade-in"><span class="proj-num">04</span><div class="proj-info"><div class="proj-name">Hash21 — Arte, Identidad y Bitcoin</div><div class="proj-team">Lai, Ragnar</div></div></div>
-<div class="project-item fade-in"><span class="proj-num">05</span><div class="proj-info"><div class="proj-name">Nostr en el Espacio</div><div class="proj-team">Naranja</div></div></div>
+<div class="project-item fade-in"><span class="proj-num">05</span><div class="proj-info"><div class="proj-name">Predictr — P2P Bitcoin Prediction Bulletin</div><div class="proj-team">nic(o)</div></div></div>
 <div class="project-item fade-in"><span class="proj-num">06</span><div class="proj-info"><div class="proj-name">Nostr Kahoot</div><div class="proj-team">Looker</div></div></div>
-<div class="project-item fade-in"><span class="proj-num">07</span><div class="proj-info"><div class="proj-name">Scammer & Come Empanadas Detector</div><div class="proj-team">Looker</div></div></div>
-<div class="project-item fade-in"><span class="proj-num">08</span><div class="proj-info"><div class="proj-name">Predictr — P2P Bitcoin Prediction Bulletin</div><div class="proj-team">nic(o)</div></div></div></div>
+<div class="project-item fade-in"><span class="proj-num">07</span><div class="proj-info"><div class="proj-name">Nostr en el Espacio</div><div class="proj-team">Naranja</div></div></div>
+<div class="project-item fade-in"><span class="proj-num">08</span><div class="proj-info"><div class="proj-name">Scammer & Come Empanadas Detector</div><div class="proj-team">Looker</div></div></div></div>
   <div class="applause fade-in">⚡ Construir identidad soberana es difícil. Eso hace que valga.</div>
 </div>
 
@@ -1039,7 +1040,7 @@
   <div class="fade-in" style="font-size: clamp(32px, 5vw, 64px); font-weight: 900; color: var(--white); line-height: 1.3; max-width: 900px;">Yo no decidí.</div>
   <div class="fade-in" style="font-size: clamp(32px, 5vw, 64px); font-weight: 900; color: var(--orange); line-height: 1.3; max-width: 900px;">Son los jueces AI.</div>
   <div class="divider fade-in" style="margin: 32px auto;"></div>
-  <div class="fade-in" style="font-size: clamp(20px, 3vw, 40px); font-weight: 600; color: var(--white); max-width: 900px;">Ranking corregido después de verificación real de demos con Playwright.</div>
+  <div class="fade-in" style="font-size: clamp(20px, 3vw, 40px); font-weight: 600; color: var(--white); max-width: 900px;">Ranking recreado después de buscar demos también en GitHub About y verificar con Playwright.</div>
   <div class="fade-in" style="font-size: clamp(18px, 2.5vw, 32px); color: var(--gray); max-width: 850px;">Acá lo importante no es prometer identidad soberana. Es hacerla funcionar.</div>
 </div>
 
@@ -1055,10 +1056,10 @@
   <div class="eyebrow fade-in">🦍 GORILATOR — Hallazgos</div>
   <div class="title-md fade-in">Lo que pasó al abrir las demos</div>
   <div class="findings-list">
-    <div class="finding-item fi-green fade-in"><span class="fi-icon">✅</span><span><strong>6 de 8</strong> proyectos tenían demo verificable.</span></div>
+    <div class="finding-item fi-green fade-in"><span class="fi-icon">✅</span><span><strong>8 de 8</strong> proyectos terminaron con demo encontrada/verificada.</span></div>
     <div class="finding-item fi-green fade-in"><span class="fi-icon">🏆</span><span><strong>Arena</strong> fue el producto más sólido en experiencia general.</span></div>
     <div class="finding-item fi-green fade-in"><span class="fi-icon">🎨</span><span><strong>Hash21</strong> tuvo la mejor cara visible: arte real, artistas reales, tienda real.</span></div>
-    <div class="finding-item fi-yellow fade-in"><span class="fi-icon">⚠️</span><span><strong>Predictr</strong> y <strong>Nostr Kahoot</strong> no declararon demo pública.</span></div>
+    <div class="finding-item fi-yellow fade-in"><span class="fi-icon">⚠️</span><span><strong>Predictr</strong> y <strong>Nostr Kahoot</strong> tenían la demo en GitHub About/Website.</span></div>
     <div class="finding-item fi-yellow fade-in"><span class="fi-icon">🧩</span><span><strong>Hash21</strong> cargó, pero con warning: <span class="mono">supabase is not defined</span>.</span></div>
   </div>
 </div>
@@ -1097,8 +1098,8 @@
   <div class="findings-list">
     <div class="finding-item fi-green fade-in"><span class="fi-icon">🏆</span><span><strong>Mejor proyecto integral:</strong> Arena — reputación portable, badges, zaps y pruebas.</span></div>
     <div class="finding-item fi-green fade-in"><span class="fi-icon">🎭</span><span><strong>Más cultural:</strong> Hash21 — Bitcoin como arte, identidad y mercado.</span></div>
-    <div class="finding-item fi-green fade-in"><span class="fi-icon">🧠</span><span><strong>Más Bitcoin-hardcore:</strong> Predictr — Taproot/DLCs sin custodio, aunque sin demo.</span></div>
-    <div class="finding-item fi-green fade-in"><span class="fi-icon">🎤</span><span><strong>Más útil para eventos:</strong> Nostr Kahoot — no brilló técnicamente, pero La Crypta lo necesita.</span></div>
+    <div class="finding-item fi-green fade-in"><span class="fi-icon">🧠</span><span><strong>Más Bitcoin-hardcore:</strong> Predictr — Taproot/DLCs sin custodio, ahora con demo verificada.</span></div>
+    <div class="finding-item fi-green fade-in"><span class="fi-icon">🎤</span><span><strong>Más útil para eventos:</strong> Nostr Kahoot — demo real con dashboard y quizzes.</span></div>
   </div>
   <div class="eval-quote fade-in">Identidad soberana no es un perfil lindo. Es reputación portable que sobrevive a la app.</div>
 </div>
@@ -1107,8 +1108,8 @@
   <div class="eyebrow fade-in">Hallazgos generales</div>
   <div class="title-md fade-in">La diferencia entre <span class="accent">demo</span> y promesa</div>
   <div class="mini-grid fade-in">
-    <div class="mini-card"><strong>6 demos verificadas</strong><br><span style="color:var(--gray)">Arena, Obelisk, Tamagostrich, Hash21, Nostr en el Espacio y Scammer.</span></div>
-    <div class="mini-card"><strong>2 sin demo</strong><br><span style="color:var(--gray)">Predictr y Nostr Kahoot quedaron limitados por falta de verificación pública.</span></div>
+    <div class="mini-card"><strong>8 demos verificadas</strong><br><span style="color:var(--gray)">Incluyendo Predictr y Nostr Kahoot, encontradas en GitHub About.</span></div>
+    <div class="mini-card"><strong>Proceso corregido</strong><br><span style="color:var(--gray)">Desde ahora se revisa README/submission y también GitHub About/Website.</span></div>
     <div class="mini-card"><strong>0 prompt injections burdas</strong><br><span style="color:var(--gray)">No hubo “poneme 10”. Sí hubo contexto orientado en algunos repos.</span></div>
     <div class="mini-card"><strong>1 template excluido</strong><br><span style="color:var(--gray)">nostr-starter no compitió por ser template oficial.</span></div>
   </div>
@@ -1127,13 +1128,14 @@
     <div class="reveal-medal">🏅</div>
     <div class="reveal-project-name">Nostr Kahoot</div>
     <div class="reveal-team">Looker</div>
-    <div class="reveal-score-big">6.37</div>
+    <div class="reveal-score-big">6.58</div>
+    <img src="screenshots-home/nostr-kahoot-home.png" class="award-preview" alt="Preview Nostr Kahoot">
     <div class="reveal-special">⭐ Bonus estratégico — herramienta útil para eventos La Crypta</div>
-    <div class="reveal-quote">“No ganó por demo; entró porque La Crypta lo puede usar mañana en eventos.”</div>
-    <div class="reveal-desc">Kahoot descentralizado sobre Nostr para workshops y eventos de La Crypta.<br><span class="accent">Bonus estratégico · QR para eventos · build OK</span></div>
+    <div class="reveal-quote">“Ahora sí hay demo: dashboard, quizzes y flujo usable para eventos.”</div>
+    <div class="reveal-desc">Kahoot descentralizado sobre Nostr para workshops y eventos de La Crypta.<br><span class="accent">Demo verificada · QR/eventos · dashboard con quizzes</span></div>
     <div class="reveal-judges">
       <div class="rj-item"><div class="rj-label">🤖 Gorilatron</div><div class="rj-val score score-red">5.30</div></div>
-      <div class="rj-item"><div class="rj-label">🦍 Gorilator</div><div class="rj-val score score-yellow">6.60</div></div>
+      <div class="rj-item"><div class="rj-label">🦍 Gorilator</div><div class="rj-val score score-green">7.25</div></div>
       <div class="rj-item"><div class="rj-label">⚡ Claudio</div><div class="rj-val score score-green">7.20</div></div>
     </div>
     <div class="repo-line">https://github.com/Lo0ker-Noma/nostr-kahoot</div>
@@ -1145,18 +1147,19 @@
   <div class="award-suspense" id="s14-suspense"><div class="pos-medal">🏅</div><div class="pos-label">5° Puesto</div><div class="pos-number">5°</div></div>
   <div class="award-reveal" id="s14-reveal">
     <div class="reveal-medal">🏅</div>
-    <div class="reveal-project-name">Nostr en el Espacio</div>
-    <div class="reveal-team">Naranja</div>
-    <div class="reveal-score-big">6.39</div>
+    <div class="reveal-project-name">Predictr — P2P Bitcoin Prediction Bulletin</div>
+    <div class="reveal-team">nic(o)</div>
+    <div class="reveal-score-big">6.96</div>
+    <img src="screenshots-home/predictr-home.png" class="award-preview" alt="Preview Predictr — P2P Bitcoin Prediction Bulletin">
     
-    <div class="reveal-quote">“La identidad se entiende mejor cuando la ves como red viva.”</div>
-    <div class="reveal-desc">Visualizador de identidad Nostr como universo/grafo: follows, comunidades, relays y zaps.<br><span class="accent">Más visual · herramienta educativa · demo verificada</span></div>
+    <div class="reveal-quote">“La idea más Bitcoin-hardcore ahora tiene demo verificable: experimental, pero viva.”</div>
+    <div class="reveal-desc">Prediction markets P2P sobre Bitcoin/Nostr con UI de mercados, oracle y contratos en regtest.<br><span class="accent">Más Bitcoin-hardcore · demo verificada · experimental</span></div>
     <div class="reveal-judges">
-      <div class="rj-item"><div class="rj-label">🤖 Gorilatron</div><div class="rj-val score score-yellow">6.20</div></div>
-      <div class="rj-item"><div class="rj-label">🦍 Gorilator</div><div class="rj-val score score-yellow">6.55</div></div>
-      <div class="rj-item"><div class="rj-label">⚡ Claudio</div><div class="rj-val score score-yellow">6.42</div></div>
+      <div class="rj-item"><div class="rj-label">🤖 Gorilatron</div><div class="rj-val score score-green">7.00</div></div>
+      <div class="rj-item"><div class="rj-label">🦍 Gorilator</div><div class="rj-val score score-yellow">6.75</div></div>
+      <div class="rj-item"><div class="rj-label">⚡ Claudio</div><div class="rj-val score score-green">7.12</div></div>
     </div>
-    <div class="repo-line">https://github.com/soyezequiel/nostr-en-el-espacio</div>
+    <div class="repo-line">https://github.com/landaverdend/predictr</div>
   </div>
   <div class="reveal-hint" id="s14-hint">ESPACIO para revelar ▶</div>
 </div>
@@ -1168,6 +1171,7 @@
     <div class="reveal-project-name">Hash21 — Arte, Identidad y Bitcoin</div>
     <div class="reveal-team">Lai, Ragnar</div>
     <div class="reveal-score-big">6.98</div>
+    <img src="screenshots-home/hash21-home.png" class="award-preview" alt="Preview Hash21 — Arte, Identidad y Bitcoin">
     <div class="reveal-special">🎨 Mejor experiencia visual — arte real, tienda real, cultura Bitcoin</div>
     <div class="reveal-quote">“No es un demo. Es cultura Bitcoin con artistas reales.”</div>
     <div class="reveal-desc">Arte, identidad y Bitcoin: galería real, artistas reales, certificación y pagos Lightning.<br><span class="accent">Mejor estética · negocio real · OpenTimestamps</span></div>
@@ -1188,6 +1192,7 @@
     <div class="reveal-project-name">Tamagostrich</div>
     <div class="reveal-team">Negr0</div>
     <div class="reveal-score-big">7.19</div>
+    <img src="screenshots-home/tamagostrich-home.png" class="award-preview" alt="Preview Tamagostrich">
     
     <div class="reveal-quote">“Si la identidad Nostr puede ser divertida, puede onboardear gente.”</div>
     <div class="reveal-desc">Mascota Nostr que vive de zaps, follows y reacciones. Identidad social convertida en juego.<br><span class="accent">Idea memorable · demo viva · onboarding simple</span></div>
@@ -1208,6 +1213,7 @@
     <div class="reveal-project-name">Obelisk</div>
     <div class="reveal-team">Fabricio, Topolino</div>
     <div class="reveal-score-big">7.54</div>
+    <img src="screenshots-home/obelisk-home.png" class="award-preview" alt="Preview Obelisk">
     
     <div class="reveal-quote">“No es login con Nostr. Es infraestructura social para comunidades soberanas.”</div>
     <div class="reveal-desc">Foro soberano sobre Nostr para comunidades: reputación, relays, moderación y estructura social.<br><span class="accent">Producto claro · demo verificada · visión de comunidad</span></div>
@@ -1228,6 +1234,7 @@
     <div class="reveal-project-name">Arena</div>
     <div class="reveal-team">Anix, Wander</div>
     <div class="reveal-score-big">8.17</div>
+    <img src="screenshots-home/arena-home.png" class="award-preview" alt="Preview Arena">
     <div class="reveal-special">🏆 Proyecto más completo — 11 NIPs · 369 tests · reputación portable</div>
     <div class="reveal-quote">“El proyecto más completo: reputación portable, Nostr profundo y ejecución seria.”</div>
     <div class="reveal-desc">Plataforma de challenges donde las victorias viven como badges NIP-58 en tu identidad Nostr.<br><span class="accent">11 NIPs · 369 tests · badges, zaps, proofs y payouts</span></div>
@@ -1242,10 +1249,10 @@
 </div>
 
 <div class="slide eval-slide" id="s19">
-  <div class="eyebrow fade-in">#1 · detalle</div>
+  <div class="eyebrow fade-in">#1 · preview del proyecto</div>
   <div class="title-md fade-in"><span class="accent">Arena</span></div>
   <div class="body-lg fade-in mt-4" style="max-width:920px;">Plataforma de challenges donde las victorias viven como badges NIP-58 en tu identidad Nostr.</div>
-  <img src="reports/demo-arena.png" class="demo-shot fade-in" alt="Demo Arena">
+  <img src="screenshots-home/arena-home.png" class="demo-shot fade-in" alt="Demo Arena">
   <div class="mini-grid fade-in">
     <div class="mini-card"><strong>Score final</strong><br>8.17/10</div>
     <div class="mini-card"><strong>Dato clave</strong><br>11 NIPs · 369 tests · badges, zaps, proofs y payouts</div>
@@ -1255,10 +1262,10 @@
 </div>
 
 <div class="slide eval-slide" id="s20">
-  <div class="eyebrow fade-in">#2 · detalle</div>
+  <div class="eyebrow fade-in">#2 · preview del proyecto</div>
   <div class="title-md fade-in"><span class="accent">Obelisk</span></div>
   <div class="body-lg fade-in mt-4" style="max-width:920px;">Foro soberano sobre Nostr para comunidades: reputación, relays, moderación y estructura social.</div>
-  <img src="reports/demo-obelisk.png" class="demo-shot fade-in" alt="Demo Obelisk">
+  <img src="screenshots-home/obelisk-home.png" class="demo-shot fade-in" alt="Demo Obelisk">
   <div class="mini-grid fade-in">
     <div class="mini-card"><strong>Score final</strong><br>7.54/10</div>
     <div class="mini-card"><strong>Dato clave</strong><br>Producto claro · demo verificada · visión de comunidad</div>
@@ -1268,10 +1275,10 @@
 </div>
 
 <div class="slide eval-slide" id="s21">
-  <div class="eyebrow fade-in">#3 · detalle</div>
+  <div class="eyebrow fade-in">#3 · preview del proyecto</div>
   <div class="title-md fade-in"><span class="accent">Tamagostrich</span></div>
   <div class="body-lg fade-in mt-4" style="max-width:920px;">Mascota Nostr que vive de zaps, follows y reacciones. Identidad social convertida en juego.</div>
-  <img src="reports/demo-tamagostrich.png" class="demo-shot fade-in" alt="Demo Tamagostrich">
+  <img src="screenshots-home/tamagostrich-home.png" class="demo-shot fade-in" alt="Demo Tamagostrich">
   <div class="mini-grid fade-in">
     <div class="mini-card"><strong>Score final</strong><br>7.19/10</div>
     <div class="mini-card"><strong>Dato clave</strong><br>Idea memorable · demo viva · onboarding simple</div>
@@ -1281,10 +1288,10 @@
 </div>
 
 <div class="slide eval-slide" id="s22">
-  <div class="eyebrow fade-in">#4 · detalle</div>
+  <div class="eyebrow fade-in">#4 · preview del proyecto</div>
   <div class="title-md fade-in"><span class="accent">Hash21 — Arte, Identidad y Bitcoin</span></div>
   <div class="body-lg fade-in mt-4" style="max-width:920px;">Arte, identidad y Bitcoin: galería real, artistas reales, certificación y pagos Lightning.</div>
-  <img src="reports/demo-hash21.png" class="demo-shot fade-in" alt="Demo Hash21 — Arte, Identidad y Bitcoin">
+  <img src="screenshots-home/hash21-home.png" class="demo-shot fade-in" alt="Demo Hash21 — Arte, Identidad y Bitcoin">
   <div class="mini-grid fade-in">
     <div class="mini-card"><strong>Score final</strong><br>6.98/10</div>
     <div class="mini-card"><strong>Dato clave</strong><br>Mejor estética · negocio real · OpenTimestamps</div>
@@ -1293,20 +1300,72 @@
   </div>
 </div>
 
-<div class="slide" id="s23" style="align-items:flex-start; justify-content:flex-start; padding-top:70px;">
-  <div class="eyebrow fade-in">Los que quedaron afuera</div>
-  <div class="title-sm fade-in">Puestos 7 y 8. <span class="accent">No eran malos. Les faltó cierre.</span></div>
-  <div class="rank-list">
-    <div class="rank-item fade-in"><span class="rank-pos">7°</span><span class="rank-project">Scammer & Come Empanadas Detector</span><span class="rank-team">Looker</span><span class="rank-score score score-yellow">6.25</span></div>
-    <div class="rank-item fade-in"><span class="rank-pos">8°</span><span class="rank-project">Predictr</span><span class="rank-team">Nico</span><span class="rank-score score score-yellow">6.02</span></div>
-  </div>
-  <div class="findings-list" style="margin-top:26px;">
-    <div class="finding-item fi-green fade-in"><span class="fi-icon">🛡️</span><span><strong>Scammer:</strong> demo viva y problema real de comunidad; perdió por deuda técnica/tests.</span></div>
-    <div class="finding-item fi-yellow fade-in"><span class="fi-icon">🧠</span><span><strong>Predictr:</strong> la idea más Bitcoin-hardcore; sin demo, no podía subir más.</span></div>
+<div class="slide eval-slide" id="s23">
+  <div class="eyebrow fade-in">#5 · preview del proyecto</div>
+  <div class="title-md fade-in"><span class="accent">Predictr — P2P Bitcoin Prediction Bulletin</span></div>
+  <div class="body-lg fade-in mt-4" style="max-width:920px;">Prediction markets P2P sobre Bitcoin/Nostr con UI de mercados, oracle y contratos en regtest.</div>
+  <img src="screenshots-home/predictr-home.png" class="demo-shot fade-in" alt="Demo Predictr — P2P Bitcoin Prediction Bulletin">
+  <div class="mini-grid fade-in">
+    <div class="mini-card"><strong>Score final</strong><br>6.96/10</div>
+    <div class="mini-card"><strong>Dato clave</strong><br>Más Bitcoin-hardcore · demo verificada · experimental</div>
+    <div class="mini-card"><strong>Demo</strong><br>Sin demo declarada</div>
+    <div class="mini-card"><strong>Nota</strong><br>Demo encontrada en GitHub About/Website: https://predictr.landaverde.io/. Verificada con Playwright: app viva con mercados, detalle de mercado, navegación markets/oracle/contracts/wallet y entorno regtest. Se remueve penalización por 'sin demo', pero mantiene límites por estado experimental, regtest y falta de liquidez/ofertas visibles.</div>
   </div>
 </div>
 
 <div class="slide eval-slide" id="s24">
+  <div class="eyebrow fade-in">#6 · preview del proyecto</div>
+  <div class="title-md fade-in"><span class="accent">Nostr Kahoot</span></div>
+  <div class="body-lg fade-in mt-4" style="max-width:920px;">Kahoot descentralizado sobre Nostr para workshops y eventos de La Crypta.</div>
+  <img src="screenshots-home/nostr-kahoot-home.png" class="demo-shot fade-in" alt="Demo Nostr Kahoot">
+  <div class="mini-grid fade-in">
+    <div class="mini-card"><strong>Score final</strong><br>6.58/10</div>
+    <div class="mini-card"><strong>Dato clave</strong><br>Demo verificada · QR/eventos · dashboard con quizzes</div>
+    <div class="mini-card"><strong>Demo</strong><br>Sin demo declarada</div>
+    <div class="mini-card"><strong>Nota</strong><br>Demo encontrada en GitHub About/Website: https://nostr-kahoot.vercel.app. Verificada con Playwright: login por public key, dashboard, 3 quizzes disponibles, preview de preguntas y modos crear/unirse/jugar. Se remueve penalización por 'sin demo'; mantiene límites por dependencia de NIP-07 para publish completo y deuda técnica/tests.</div>
+  </div>
+</div>
+
+<div class="slide eval-slide" id="s25">
+  <div class="eyebrow fade-in">#7 · preview del proyecto</div>
+  <div class="title-md fade-in"><span class="accent">Nostr en el Espacio</span></div>
+  <div class="body-lg fade-in mt-4" style="max-width:920px;">Visualizador de identidad Nostr como universo/grafo: follows, comunidades, relays y zaps.</div>
+  <img src="screenshots-home/nostr-en-el-espacio-home.png" class="demo-shot fade-in" alt="Demo Nostr en el Espacio">
+  <div class="mini-grid fade-in">
+    <div class="mini-card"><strong>Score final</strong><br>6.39/10</div>
+    <div class="mini-card"><strong>Dato clave</strong><br>Más visual · herramienta educativa · demo verificada</div>
+    <div class="mini-card"><strong>Demo</strong><br>https://nostr-en-el-espacio.vercel.app/</div>
+    <div class="mini-card"><strong>Nota</strong><br>Demo verificada con Playwright; sin penalización por demo.</div>
+  </div>
+</div>
+
+<div class="slide eval-slide" id="s26">
+  <div class="eyebrow fade-in">#8 · preview del proyecto</div>
+  <div class="title-md fade-in"><span class="accent">Scammer & Come Empanadas Detector</span></div>
+  <div class="body-lg fade-in mt-4" style="max-width:920px;">Identity Hub para verificar perfiles, badges y reputación anti-scammer dentro de La Crypta.</div>
+  <img src="screenshots-home/scammer-come-empanadas-detector-home.png" class="demo-shot fade-in" alt="Demo Scammer & Come Empanadas Detector">
+  <div class="mini-grid fade-in">
+    <div class="mini-card"><strong>Score final</strong><br>6.25/10</div>
+    <div class="mini-card"><strong>Dato clave</strong><br>Seguridad comunitaria · NIP-05/NIP-58 · demo viva</div>
+    <div class="mini-card"><strong>Demo</strong><br>https://nostr-identity-hub.vercel.app/</div>
+    <div class="mini-card"><strong>Nota</strong><br>Demo verificada con Playwright: UI viva y significativa; mantiene penalización técnica por falta de tests/lint/lockfile.</div>
+  </div>
+</div>
+
+<div class="slide" id="s27" style="align-items:flex-start; justify-content:flex-start; padding-top:70px;">
+  <div class="eyebrow fade-in">Los que quedaron afuera</div>
+  <div class="title-sm fade-in">Puestos 7 y 8. <span class="accent">No eran malos. La vara subió.</span></div>
+  <div class="rank-list">
+    <div class="rank-item fade-in"><span class="rank-pos">7°</span><span class="rank-project">Nostr en el Espacio</span><span class="rank-team">Naranja</span><span class="rank-score score score-yellow">6.39</span></div>
+<div class="rank-item fade-in"><span class="rank-pos">8°</span><span class="rank-project">Scammer & Come Empanadas Detector</span><span class="rank-team">Looker</span><span class="rank-score score score-yellow">6.25</span></div>
+  </div>
+  <div class="findings-list" style="margin-top:26px;">
+    <div class="finding-item fi-green fade-in"><span class="fi-icon">🛰️</span><span><strong>Nostr en el Espacio:</strong> demo visual/educativa valiosa; sale de premios por la corrección de Predictr y Kahoot.</span></div>
+    <div class="finding-item fi-green fade-in"><span class="fi-icon">🛡️</span><span><strong>Scammer Detector:</strong> problema real y demo viva; perdió por deuda técnica/tests.</span></div>
+  </div>
+</div>
+
+<div class="slide eval-slide" id="s28">
   <div class="eyebrow fade-in">Lecciones</div>
   <div class="title-md fade-in">Qué aprendimos de <span class="accent">IDENTITY</span></div>
   <div class="findings-list">
@@ -1318,7 +1377,7 @@
   <div class="eval-quote fade-in">Don’t trust. Verify. También aplica a demos.</div>
 </div>
 
-<div class="slide" id="s25">
+<div class="slide" id="s29">
   <div class="logo-close fade-in"><img src="https://raw.githubusercontent.com/lacrypta/branding/main/iso/512-white.png" alt="La Crypta" style="width:100px;height:auto;display:block;margin:0 auto;"></div>
   <div class="closing-stats">
     <div class="closing-line accent fade-in">8 proyectos. 6 ganadores. 6 demos verificadas.</div>
@@ -1338,7 +1397,7 @@
 <div class="nav-dots" id="navDots"></div>
 <div class="slide-counter" id="slideCounter"></div>
 <script>
-  const TOTAL = 25;
+  const TOTAL = 29;
   let current = 0;
   let transitioning = false;
   const awardState = {13: 0, 14: 0, 15: 0, 16: 0, 17: 0, 18: 0};
