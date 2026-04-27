@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HACKATHON FOUNDATIONS 2026 — El Juicio Final</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0a;
+    --orange: #f7931a;
+    --orange-dim: rgba(247, 147, 26, 0.15);
+    --orange-glow: rgba(247, 147, 26, 0.4);
+    --white: #ffffff;
+    --gray: #94a3b8;
+    --gray-dim: #3a4a5a;
+    --blue: #2563eb;
+    --green: #22c55e;
+    --yellow: #eab308;
+    --red: #ef4444;
+    --red-dim: rgba(239, 68, 68, 0.15);
+    --yellow-dim: rgba(234, 179, 8, 0.15);
+    --green-dim: rgba(34, 197, 94, 0.15);
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  .deck {
+    width: 100vw; height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    width: 100vw; height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 80px;
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 0.6s cubic-bezier(.4,0,.2,1), transform 0.6s cubic-bezier(.4,0,.2,1);
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: all;
+  }
+
+  .slide.exit-left {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .slide.active .fade-in { opacity: 1; transform: translateY(0); }
+  .slide.active .fade-in:nth-child(1) { transition-delay: 0.1s; }
+  .slide.active .fade-in:nth-child(2) { transition-delay: 0.2s; }
+  .slide.active .fade-in:nth-child(3) { transition-delay: 0.3s; }
+  .slide.active .fade-in:nth-child(4) { transition-delay: 0.4s; }
+  .slide.active .fade-in:nth-child(5) { transition-delay: 0.5s; }
+  .slide.active .fade-in:nth-child(6) { transition-delay: 0.6s; }
+  .slide.active .fade-in:nth-child(7) { transition-delay: 0.7s; }
+  .slide.active .fade-in:nth-child(8) { transition-delay: 0.8s; }
+  .slide.active .fade-in:nth-child(9) { transition-delay: 0.9s; }
+
+  .nav-dots {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+  }
+
+  .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--gray-dim);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+  }
+
+  .dot.active {
+    background: var(--orange);
+    transform: scale(1.4);
+  }
+
+  .nav-arrow {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--gray);
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    transition: all 0.2s;
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-arrow:hover {
+    background: var(--orange-dim);
+    border-color: var(--orange);
+    color: var(--orange);
+  }
+
+  .nav-arrow.prev { left: 24px; }
+  .nav-arrow.next { right: 24px; }
+
+  .slide-counter {
+    position: fixed;
+    bottom: 28px;
+    right: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--gray-dim);
+    z-index: 100;
+  }
+
+  .bg-grid {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(247,147,26,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(247,147,26,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .bg-glow {
+    position: fixed;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(247,147,26,0.06) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+
+  .title-xl {
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .title-lg {
+    font-size: clamp(36px, 5vw, 72px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .title-md {
+    font-size: clamp(28px, 3.5vw, 52px);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .title-sm {
+    font-size: clamp(20px, 2.5vw, 36px);
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .body-lg {
+    font-size: clamp(16px, 1.8vw, 24px);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--gray);
+  }
+
+  .body-md {
+    font-size: clamp(14px, 1.5vw, 20px);
+    line-height: 1.6;
+    color: var(--gray);
+  }
+
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .accent { color: var(--orange); }
+  .muted { color: var(--gray); }
+  .white { color: var(--white); }
+
+  .divider {
+    width: 80px; height: 2px;
+    background: linear-gradient(90deg, var(--orange), transparent);
+    margin: 24px 0;
+  }
+
+  .logo-img { max-width: 100%; height: auto; display: block; }
+
+  .score {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 1em;
+  }
+
+  .score-green { background: var(--green-dim); color: var(--green); border: 1px solid rgba(34,197,94,0.3); }
+  .score-yellow { background: var(--yellow-dim); color: var(--yellow); border: 1px solid rgba(234,179,8,0.3); }
+  .score-red { background: var(--red-dim); color: var(--red); border: 1px solid rgba(239,68,68,0.3); }
+
+  .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: var(--orange-dim);
+    color: var(--orange);
+    border: 1px solid rgba(247,147,26,0.3);
+  }
+
+  #s1 { text-align: center; gap: 0; }
+
+  #s1 .logo-wrap {
+    width: 260px;
+    margin: 0 auto 40px;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition-delay: 0.1s;
+  }
+
+  #s1.active .logo-wrap { opacity: 1; transform: scale(1); }
+
+  #s1 .hackathon-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(12px, 1.5vw, 18px);
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 20px;
+    opacity: 0;
+    transition: opacity 0.6s ease 0.3s;
+  }
+
+  #s1.active .hackathon-name { opacity: 1; }
+
+  #s1 .main-title {
+    font-size: clamp(56px, 8vw, 110px);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    background: linear-gradient(135deg, #ffffff 40%, #f7931a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease 0.5s, transform 0.7s ease 0.5s;
+  }
+
+  #s1.active .main-title { opacity: 1; transform: translateY(0); }
+
+  #s1 .subtitle-juicio {
+    font-size: clamp(20px, 3vw, 40px);
+    font-weight: 300;
+    color: var(--gray);
+    letter-spacing: 0.1em;
+    margin-top: 12px;
+    opacity: 0;
+    transition: opacity 0.6s ease 0.8s;
+  }
+
+  #s1.active .subtitle-juicio { opacity: 1; }
+
+  #s1 .stats-row {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    margin-top: 40px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease 1s, transform 0.6s ease 1s;
+  }
+
+  #s1.active .stats-row { opacity: 1; transform: translateY(0); }
+
+  .stat-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(12px, 1.2vw, 16px);
+    font-weight: 500;
+    color: var(--gray);
+    padding: 8px 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 100px;
+    background: rgba(255,255,255,0.03);
+    letter-spacing: 0.05em;
+  }
+
+  .stat-pill span { color: var(--orange); font-weight: 700; }
+
+  #s1 .date-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--gray-dim);
+    margin-top: 20px;
+    letter-spacing: 0.15em;
+    opacity: 0;
+    transition: opacity 0.6s ease 1.2s;
+  }
+
+  #s1.active .date-label { opacity: 1; }
+
+  .numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  .number-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    transition: border-color 0.3s;
+  }
+
+  .number-card:hover { border-color: var(--orange-glow); }
+
+  .number-card .big-num {
+    font-size: clamp(48px, 6vw, 80px);
+    font-weight: 900;
+    color: var(--orange);
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1;
+  }
+
+  .number-card .num-label {
+    font-size: 15px;
+    color: var(--gray);
+    margin-top: 8px;
+    font-weight: 500;
+  }
+
+  .categories-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 28px;
+  }
+
+  .cat-pill {
+    background: rgba(37, 99, 235, 0.1);
+    border: 1px solid rgba(37, 99, 235, 0.25);
+    color: #60a5fa;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(11px, 1.1vw, 14px);
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 8px;
+  }
+
+  .cat-pill .weight {
+    color: var(--orange);
+    margin-left: 6px;
+  }
+
+  .findings-list {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+  }
+
+  .finding-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    font-size: clamp(13px, 1.3vw, 17px);
+    line-height: 1.5;
+    border: 1px solid transparent;
+  }
+
+  .finding-item.fi-green {
+    background: var(--green-dim);
+    border-color: rgba(34,197,94,0.2);
+    color: #86efac;
+  }
+
+  .finding-item.fi-yellow {
+    background: var(--yellow-dim);
+    border-color: rgba(234,179,8,0.2);
+    color: #fde047;
+  }
+
+  .finding-item.fi-red {
+    background: var(--red-dim);
+    border-color: rgba(239,68,68,0.2);
+    color: #fca5a5;
+  }
+
+  .finding-item.fi-neutral {
+    background: rgba(255,255,255,0.03);
+    border-color: rgba(255,255,255,0.07);
+    color: var(--gray);
+  }
+
+  .fi-icon { font-size: 18px; flex-shrink: 0; }
+
+  .eval-quote {
+    margin-top: 28px;
+    font-size: clamp(16px, 1.8vw, 24px);
+    font-style: italic;
+    color: var(--gray);
+    border-left: 3px solid var(--orange);
+    padding-left: 20px;
+    line-height: 1.6;
+  }
+
+  .lightning-table {
+    width: 100%;
+    margin-top: 28px;
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  .lightning-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(10px, 1vw, 13px);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
+    padding: 12px 20px;
+    text-align: left;
+    border-bottom: 1px solid rgba(247,147,26,0.3);
+  }
+
+  .lightning-table td {
+    font-size: clamp(13px, 1.3vw, 18px);
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: var(--white);
+  }
+
+  .lightning-table tr:last-child td { border-bottom: none; }
+
+  .lightning-table tr:hover td { background: rgba(247,147,26,0.04); }
+
+  .lightning-table .sats-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--orange);
+  }
+
+  .lightning-table .detect-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9em;
+    color: var(--gray);
+  }
+
+  .lightning-table .ok { color: var(--green); font-weight: 700; }
+  .lightning-table .fail { color: var(--red); font-size: 0.85em; }
+
+  .total-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+    padding: 18px 24px;
+    background: var(--orange-dim);
+    border: 1px solid rgba(247,147,26,0.3);
+    border-radius: 12px;
+  }
+
+  .total-row .label { color: var(--gray); font-size: clamp(13px, 1.3vw, 18px); }
+  .total-row .value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(20px, 2.5vw, 36px);
+    font-weight: 900;
+    color: var(--orange);
+  }
+
+  .rank-list {
+    width: 100%;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .rank-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: all 0.2s;
+  }
+
+  .rank-item:hover {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.1);
+    transform: translateX(4px);
+  }
+
+  .rank-pos {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(12px, 1.2vw, 16px);
+    font-weight: 700;
+    color: var(--gray-dim);
+    min-width: 32px;
+  }
+
+  .rank-project {
+    flex: 1;
+    font-size: clamp(14px, 1.5vw, 20px);
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .rank-team {
+    font-size: clamp(11px, 1.1vw, 14px);
+    color: var(--gray);
+    margin-right: 16px;
+  }
+
+  .rank-score {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(14px, 1.5vw, 20px);
+    font-weight: 700;
+    min-width: 44px;
+    text-align: right;
+  }
+
+  .award-slide {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .award-suspense {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .award-suspense .pos-medal {
+    font-size: clamp(48px, 6vw, 80px);
+    line-height: 1;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .award-suspense .pos-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(13px, 1.5vw, 20px);
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--orange);
+    opacity: 0;
+    transition: opacity 0.6s ease 0.2s;
+  }
+
+  .award-suspense .pos-number {
+    font-size: clamp(80px, 12vw, 160px);
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    background: linear-gradient(135deg, #ffffff, #f7931a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0;
+    transform: translateY(40px) scale(0.8);
+    transition: opacity 0.7s ease 0.4s, transform 0.7s cubic-bezier(.175,.885,.32,1.275) 0.4s;
+  }
+
+  .slide.active .award-suspense .pos-medal { opacity: 1; transform: scale(1); }
+  .slide.active .award-suspense .pos-label { opacity: 1; }
+  .slide.active .award-suspense .pos-number { opacity: 1; transform: translateY(0) scale(1); }
+
+  .award-reveal {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    gap: 0;
+  }
+
+  .award-reveal.shown { display: flex; }
+
+  .reveal-medal {
+    font-size: clamp(48px, 5vw, 72px);
+    line-height: 1;
+    margin-bottom: 12px;
+    animation: bounceIn 0.6s cubic-bezier(.175,.885,.32,1.275) both;
+  }
+
+  .reveal-project-name {
+    font-size: clamp(40px, 7vw, 100px);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    background: linear-gradient(135deg, #ffffff 40%, #f7931a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    animation: revealSlide 0.7s cubic-bezier(.22,1,.36,1) both;
+  }
+
+  .reveal-team {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(14px, 1.8vw, 24px);
+    color: var(--gray);
+    margin-top: 12px;
+    animation: fadeUp 0.5s ease 0.3s both;
+  }
+
+  .reveal-score-big {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(52px, 7vw, 96px);
+    font-weight: 900;
+    color: var(--orange);
+    line-height: 1;
+    margin: 20px 0 0;
+    animation: fadeUp 0.5s ease 0.5s both;
+  }
+
+  .reveal-desc {
+    font-size: clamp(14px, 1.5vw, 20px);
+    color: var(--gray);
+    line-height: 1.6;
+    margin-top: 16px;
+    max-width: 700px;
+    text-align: center;
+    animation: fadeUp 0.5s ease 0.6s both;
+  }
+
+  .reveal-judges {
+    display: flex;
+    gap: 24px;
+    margin-top: 20px;
+    animation: fadeUp 0.5s ease 0.75s both;
+  }
+
+  .rj-item {
+    text-align: center;
+    padding: 12px 20px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    min-width: 140px;
+  }
+
+  .rj-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--gray-dim);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .rj-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(20px, 2.5vw, 32px);
+    font-weight: 700;
+  }
+
+  .reveal-quote {
+    font-size: clamp(14px, 1.5vw, 20px);
+    font-style: italic;
+    color: var(--orange);
+    margin-top: 16px;
+    animation: fadeUp 0.5s ease 0.9s both;
+  }
+
+  .reveal-special {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    background: rgba(234,179,8,0.1);
+    border: 1px solid rgba(234,179,8,0.3);
+    border-radius: 100px;
+    font-size: clamp(12px, 1.2vw, 15px);
+    color: var(--yellow);
+    font-weight: 600;
+    margin-top: 12px;
+    animation: fadeUp 0.5s ease 0.7s both;
+  }
+
+  .reveal-hint {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--gray-dim);
+    letter-spacing: 0.15em;
+    animation: pulse-text 2.5s ease-in-out infinite;
+  }
+
+  .reveal-hint.hidden { display: none; }
+
+  @keyframes bounceIn {
+    from { opacity: 0; transform: scale(0.3); }
+    60% { transform: scale(1.1); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes revealSlide {
+    from { opacity: 0; transform: translateY(50px) scale(0.9); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse-text {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  .drum-roll {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(11px, 1.2vw, 15px);
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--gray-dim);
+    margin-bottom: 40px;
+    animation: pulse-text 2s ease-in-out infinite;
+  }
+
+  .dramatic-title {
+    font-size: clamp(64px, 10vw, 140px);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    background: linear-gradient(135deg, #fff 30%, #f7931a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+
+  .formula-big {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(16px, 2vw, 26px);
+    color: var(--gray);
+    margin-top: 36px;
+    padding: 20px 40px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .formula-big .hl { color: var(--orange); }
+
+  .scanlines {
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.03) 2px,
+      rgba(0,0,0,0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 200;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    width: 100%;
+    margin-top: 32px;
+  }
+
+  .progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--orange), #ffd700);
+    transition: width 0.5s ease;
+    z-index: 150;
+  }
+
+  .w-full { width: 100%; }
+  .mt-2 { margin-top: 8px; }
+  .mt-3 { margin-top: 12px; }
+  .mt-4 { margin-top: 16px; }
+  .mt-6 { margin-top: 24px; }
+  .mt-8 { margin-top: 32px; }
+  .text-center { text-align: center; }
+
+  .eval-slide { align-items: flex-start; }
+
+  #s2, #s3, #s4, #s24 { align-items: flex-start; }
+
+  #s4 { justify-content: flex-start; padding-top: 60px; }
+  #s24 { justify-content: flex-start; padding-top: 60px; }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 100%;
+    margin-top: 28px;
+  }
+
+  .project-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 10px;
+    transition: all 0.2s;
+  }
+
+  .project-item:hover {
+    background: var(--orange-dim);
+    border-color: rgba(247,147,26,0.3);
+  }
+
+  .proj-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--orange);
+    min-width: 22px;
+  }
+
+  .proj-info { flex: 1; overflow: hidden; }
+
+  .proj-name {
+    font-size: clamp(12px, 1.2vw, 16px);
+    font-weight: 600;
+    color: var(--white);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .proj-team {
+    font-size: clamp(10px, 1vw, 13px);
+    color: var(--gray);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  #s4 .applause {
+    margin-top: 24px;
+    font-size: clamp(14px, 1.5vw, 20px);
+    font-weight: 600;
+    color: var(--orange);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  #s2 .bottom-note {
+    margin-top: 32px;
+    font-size: clamp(14px, 1.4vw, 18px);
+    color: var(--gray);
+    line-height: 1.7;
+  }
+
+  .names-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .name-chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(13px, 1.4vw, 18px);
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--gray);
+    transition: all 0.2s;
+  }
+
+  .name-chip:hover {
+    background: rgba(255,255,255,0.06);
+    color: var(--white);
+  }
+
+  #s3 .hug-note {
+    margin-top: 36px;
+    font-size: clamp(16px, 1.8vw, 24px);
+    color: var(--gray);
+    font-style: italic;
+    line-height: 1.6;
+    border-left: 3px solid var(--orange);
+    padding-left: 20px;
+  }
+
+  #s31 { text-align: center; }
+
+  #s31 .closing-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 32px 0;
+  }
+
+  #s31 .closing-line {
+    font-size: clamp(18px, 2.5vw, 36px);
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.4;
+  }
+
+  #s31 .closing-line.accent { color: var(--orange); }
+  #s31 .closing-line.muted { color: var(--gray); font-weight: 400; font-size: clamp(15px, 1.8vw, 26px); }
+
+  #s31 .btc-death {
+    font-size: clamp(24px, 3.5vw, 52px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-top: 32px;
+    color: var(--orange);
+  }
+
+  #s31 .logo-close {
+    width: 160px;
+    margin: 32px auto 0;
+    opacity: 0.8;
+  }
+
+  .demo-shot { width: min(820px, 72vw); max-height: 46vh; object-fit: cover; border-radius: 18px; border: 1px solid rgba(247,147,26,0.28); box-shadow: 0 24px 80px rgba(0,0,0,.45), 0 0 40px rgba(247,147,26,.12); }
+  .mini-grid { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:18px; width:min(980px,86vw); margin-top:28px; }
+  .mini-card { padding:18px 20px; border:1px solid rgba(255,255,255,.10); border-radius:14px; background:rgba(255,255,255,.035); }
+  .mini-card strong { color: var(--orange); }
+  .repo-line { font-family:'JetBrains Mono', monospace; font-size:13px; color:var(--gray-dim); margin-top:12px; overflow:hidden; text-overflow:ellipsis; max-width:900px; }
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div><div class="bg-glow"></div><div class="scanlines"></div><div class="progress-bar" id="progressBar"></div>
+<div class="deck" id="deck">
+<div class="slide" id="s1" data-index="0">
+  <div class="logo-wrap"><img src="https://raw.githubusercontent.com/lacrypta/branding/main/title/512-white.png" alt="La Crypta" class="logo-img"></div>
+  <div class="hackathon-name">La Crypta presenta</div>
+  <div class="main-title">HACKATHON<br>IDENTITY</div>
+  <div class="subtitle-juicio">El Juicio Final — Abril 2026</div>
+  <div class="stats-row"><div class="stat-pill"><span>8</span> proyectos</div><div class="stat-pill"><span>3</span> jueces</div><div class="stat-pill"><span>6</span> ganadores</div></div>
+  <div class="date-label">LIGHTNING HACKATHONS · IDENTIDAD BITCOIN/NOSTR</div>
+</div>
+
+<div class="slide" id="s2">
+  <div class="eyebrow fade-in">¿Qué fue IDENTITY?</div>
+  <div class="title-lg fade-in">La hackathon de<br><span class="accent">identidad soberana</span><br>de La Crypta.</div>
+  <div class="numbers-grid">
+    <div class="number-card fade-in"><div class="big-num">8</div><div class="num-label">proyectos evaluados</div></div>
+    <div class="number-card fade-in"><div class="big-num">6</div><div class="num-label">demos verificadas</div></div>
+    <div class="number-card fade-in"><div class="big-num">1</div><div class="num-label">starter excluido</div></div>
+  </div>
+  <div class="bottom-note fade-in">La consigna: identidad portable, reputación, Nostr, Lightning, cultura y herramientas que puedan vivir fuera de una base de datos corporativa.</div>
+</div>
+
+<div class="slide" id="s3">
+  <div class="eyebrow fade-in">Los que sí construyeron</div>
+  <div class="title-md fade-in">8 proyectos. <span class="accent">8 interpretaciones de identidad.</span></div>
+  <div class="projects-grid"><div class="project-item fade-in"><span class="proj-num">01</span><div class="proj-info"><div class="proj-name">Arena</div><div class="proj-team">Anix, Wander</div></div></div>
+<div class="project-item fade-in"><span class="proj-num">02</span><div class="proj-info"><div class="proj-name">Obelisk</div><div class="proj-team">Fabricio, Topolino</div></div></div>
+<div class="project-item fade-in"><span class="proj-num">03</span><div class="proj-info"><div class="proj-name">Tamagostrich</div><div class="proj-team">Negr0</div></div></div>
+<div class="project-item fade-in"><span class="proj-num">04</span><div class="proj-info"><div class="proj-name">Hash21 — Arte, Identidad y Bitcoin</div><div class="proj-team">Lai, Ragnar</div></div></div>
+<div class="project-item fade-in"><span class="proj-num">05</span><div class="proj-info"><div class="proj-name">Nostr en el Espacio</div><div class="proj-team">Naranja</div></div></div>
+<div class="project-item fade-in"><span class="proj-num">06</span><div class="proj-info"><div class="proj-name">Nostr Kahoot</div><div class="proj-team">Looker</div></div></div>
+<div class="project-item fade-in"><span class="proj-num">07</span><div class="proj-info"><div class="proj-name">Scammer & Come Empanadas Detector</div><div class="proj-team">Looker</div></div></div>
+<div class="project-item fade-in"><span class="proj-num">08</span><div class="proj-info"><div class="proj-name">Predictr — P2P Bitcoin Prediction Bulletin</div><div class="proj-team">nic(o)</div></div></div></div>
+  <div class="applause fade-in">⚡ Construir identidad soberana es difícil. Eso hace que valga.</div>
+</div>
+
+<div class="slide" id="s4" style="text-align:center; gap:32px;">
+  <div class="fade-in" style="font-size: clamp(32px, 5vw, 64px); font-weight: 900; color: var(--white); line-height: 1.3; max-width: 900px;">Yo no decidí.</div>
+  <div class="fade-in" style="font-size: clamp(32px, 5vw, 64px); font-weight: 900; color: var(--orange); line-height: 1.3; max-width: 900px;">Son los jueces AI.</div>
+  <div class="divider fade-in" style="margin: 32px auto;"></div>
+  <div class="fade-in" style="font-size: clamp(20px, 3vw, 40px); font-weight: 600; color: var(--white); max-width: 900px;">Ranking corregido después de verificación real de demos con Playwright.</div>
+  <div class="fade-in" style="font-size: clamp(18px, 2.5vw, 32px); color: var(--gray); max-width: 850px;">Acá lo importante no es prometer identidad soberana. Es hacerla funcionar.</div>
+</div>
+
+<div class="slide" id="s5" style="text-align:center; gap:24px;">
+  <div class="fade-in"><img src="https://hackaton.lacrypta.ar/assets/judges/gorilator.png" alt="Gorilator" style="width:140px;height:140px;border-radius:50%;border:3px solid var(--orange);box-shadow:0 0 30px rgba(247,147,26,0.3);object-fit:cover;"></div>
+  <div class="fade-in" style="font-size: clamp(48px, 7vw, 96px); font-weight: 900; letter-spacing: -0.04em; color: var(--orange);">GORILATOR</div>
+  <div class="fade-in" style="font-family:'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray-dim);">Tester funcional · Playwright</div>
+  <div class="divider fade-in" style="margin: 20px auto;"></div>
+  <div class="fade-in" style="font-size: clamp(18px, 2.5vw, 32px); color: var(--white); line-height: 1.6; max-width: 900px;"><strong>El que abre la app.</strong><br>Verifica demos, navega la UI y separa producto real de README optimista.</div>
+</div>
+
+<div class="slide eval-slide" id="s6">
+  <div class="eyebrow fade-in">🦍 GORILATOR — Hallazgos</div>
+  <div class="title-md fade-in">Lo que pasó al abrir las demos</div>
+  <div class="findings-list">
+    <div class="finding-item fi-green fade-in"><span class="fi-icon">✅</span><span><strong>6 de 8</strong> proyectos tenían demo verificable.</span></div>
+    <div class="finding-item fi-green fade-in"><span class="fi-icon">🏆</span><span><strong>Arena</strong> fue el producto más sólido en experiencia general.</span></div>
+    <div class="finding-item fi-green fade-in"><span class="fi-icon">🎨</span><span><strong>Hash21</strong> tuvo la mejor cara visible: arte real, artistas reales, tienda real.</span></div>
+    <div class="finding-item fi-yellow fade-in"><span class="fi-icon">⚠️</span><span><strong>Predictr</strong> y <strong>Nostr Kahoot</strong> no declararon demo pública.</span></div>
+    <div class="finding-item fi-yellow fade-in"><span class="fi-icon">🧩</span><span><strong>Hash21</strong> cargó, pero con warning: <span class="mono">supabase is not defined</span>.</span></div>
+  </div>
+</div>
+
+<div class="slide" id="s7" style="text-align:center; gap:24px;">
+  <div class="fade-in"><img src="https://hackaton.lacrypta.ar/assets/judges/gorilatron.png" alt="Gorilatron" style="width:140px;height:140px;border-radius:50%;border:3px solid var(--orange);box-shadow:0 0 30px rgba(247,147,26,0.3);object-fit:cover;"></div>
+  <div class="fade-in" style="font-size: clamp(48px, 7vw, 96px); font-weight: 900; letter-spacing: -0.04em; color: var(--orange);">GORILATRON</div>
+  <div class="fade-in" style="font-family:'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray-dim);">OpenAI Codex · Auditor técnico</div>
+  <div class="divider fade-in" style="margin: 20px auto;"></div>
+  <div class="fade-in" style="font-size: clamp(18px, 2.5vw, 32px); color: var(--white); line-height: 1.6; max-width: 900px;"><strong>El ingeniero despiadado.</strong><br>Clona, instala, buildea, corre tests y mira seguridad. <span class="accent">Si no compila, no existe.</span></div>
+</div>
+
+<div class="slide eval-slide" id="s8">
+  <div class="eyebrow fade-in">🤖 GORILATRON — Hallazgos</div>
+  <div class="title-md fade-in">Código, tests y reproducibilidad</div>
+  <div class="findings-list">
+    <div class="finding-item fi-green fade-in"><span class="fi-icon">🧪</span><span><strong>Arena:</strong> 369 tests unitarios pasando. El outlier técnico.</span></div>
+    <div class="finding-item fi-green fade-in"><span class="fi-icon">🔐</span><span><strong>Scammer Detector:</strong> NIP-98 obligatorio + pentest 10/10 documentado.</span></div>
+    <div class="finding-item fi-yellow fade-in"><span class="fi-icon">🏗️</span><span><strong>Obelisk:</strong> visión fuerte, pero reproducibilidad y complejidad todavía pesan.</span></div>
+    <div class="finding-item fi-yellow fade-in"><span class="fi-icon">🛰️</span><span><strong>Nostr en el Espacio:</strong> ingeniería sofisticada, build roto por TypeScript.</span></div>
+    <div class="finding-item fi-red fade-in"><span class="fi-icon">💀</span><span><strong>Hash21:</strong> producto fuerte, ingeniería desordenada: sin build root, lint roto, tests frágiles.</span></div>
+  </div>
+</div>
+
+<div class="slide" id="s9" style="text-align:center; gap:24px;">
+  <div class="fade-in"><img src="https://hackaton.lacrypta.ar/assets/judges/claudio.png" alt="Claudio" style="width:140px;height:140px;border-radius:50%;border:3px solid var(--orange);box-shadow:0 0 30px rgba(247,147,26,0.3);object-fit:cover;"></div>
+  <div class="fade-in" style="font-size: clamp(48px, 7vw, 96px); font-weight: 900; letter-spacing: -0.04em; color: var(--orange);">CLAUDIO</div>
+  <div class="fade-in" style="font-family:'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray-dim);">Visión · impacto · soberanía</div>
+  <div class="divider fade-in" style="margin: 20px auto;"></div>
+  <div class="fade-in" style="font-size: clamp(18px, 2.5vw, 32px); color: var(--white); line-height: 1.6; max-width: 900px;"><strong>El juez final.</strong><br>Pregunta lo incómodo: ¿esto resuelve algo real? ¿es soberano? ¿lo usaría La Crypta? <span class="accent">¿merece sats?</span></div>
+</div>
+
+<div class="slide eval-slide" id="s10">
+  <div class="eyebrow fade-in">⚡ CLAUDIO — Lectura</div>
+  <div class="title-md fade-in">Lo que dejó IDENTITY</div>
+  <div class="findings-list">
+    <div class="finding-item fi-green fade-in"><span class="fi-icon">🏆</span><span><strong>Mejor proyecto integral:</strong> Arena — reputación portable, badges, zaps y pruebas.</span></div>
+    <div class="finding-item fi-green fade-in"><span class="fi-icon">🎭</span><span><strong>Más cultural:</strong> Hash21 — Bitcoin como arte, identidad y mercado.</span></div>
+    <div class="finding-item fi-green fade-in"><span class="fi-icon">🧠</span><span><strong>Más Bitcoin-hardcore:</strong> Predictr — Taproot/DLCs sin custodio, aunque sin demo.</span></div>
+    <div class="finding-item fi-green fade-in"><span class="fi-icon">🎤</span><span><strong>Más útil para eventos:</strong> Nostr Kahoot — no brilló técnicamente, pero La Crypta lo necesita.</span></div>
+  </div>
+  <div class="eval-quote fade-in">Identidad soberana no es un perfil lindo. Es reputación portable que sobrevive a la app.</div>
+</div>
+
+<div class="slide eval-slide" id="s11">
+  <div class="eyebrow fade-in">Hallazgos generales</div>
+  <div class="title-md fade-in">La diferencia entre <span class="accent">demo</span> y promesa</div>
+  <div class="mini-grid fade-in">
+    <div class="mini-card"><strong>6 demos verificadas</strong><br><span style="color:var(--gray)">Arena, Obelisk, Tamagostrich, Hash21, Nostr en el Espacio y Scammer.</span></div>
+    <div class="mini-card"><strong>2 sin demo</strong><br><span style="color:var(--gray)">Predictr y Nostr Kahoot quedaron limitados por falta de verificación pública.</span></div>
+    <div class="mini-card"><strong>0 prompt injections burdas</strong><br><span style="color:var(--gray)">No hubo “poneme 10”. Sí hubo contexto orientado en algunos repos.</span></div>
+    <div class="mini-card"><strong>1 template excluido</strong><br><span style="color:var(--gray)">nostr-starter no compitió por ser template oficial.</span></div>
+  </div>
+</div>
+
+<div class="slide" id="s12" style="text-align:center;">
+  <div class="drum-roll fade-in">⚡ · · · · · · · · · · · ⚡</div>
+  <div class="dramatic-title fade-in">El Juicio<br>Final</div>
+  <div class="formula-big fade-in">Score final = <span class="hl">(Gorilatron + Gorilator + Claudio)</span> / 3</div>
+  <div class="body-lg fade-in mt-8" style="color:var(--gray-dim); font-style:italic;">Con corrección explícita por demos verificadas.</div>
+</div>
+
+<div class="slide award-slide" id="s13" data-award="true">
+  <div class="award-suspense" id="s13-suspense"><div class="pos-medal">🏅</div><div class="pos-label">6° Puesto</div><div class="pos-number">6°</div></div>
+  <div class="award-reveal" id="s13-reveal">
+    <div class="reveal-medal">🏅</div>
+    <div class="reveal-project-name">Nostr Kahoot</div>
+    <div class="reveal-team">Looker</div>
+    <div class="reveal-score-big">6.37</div>
+    <div class="reveal-special">⭐ Bonus estratégico — herramienta útil para eventos La Crypta</div>
+    <div class="reveal-quote">“No ganó por demo; entró porque La Crypta lo puede usar mañana en eventos.”</div>
+    <div class="reveal-desc">Kahoot descentralizado sobre Nostr para workshops y eventos de La Crypta.<br><span class="accent">Bonus estratégico · QR para eventos · build OK</span></div>
+    <div class="reveal-judges">
+      <div class="rj-item"><div class="rj-label">🤖 Gorilatron</div><div class="rj-val score score-red">5.30</div></div>
+      <div class="rj-item"><div class="rj-label">🦍 Gorilator</div><div class="rj-val score score-yellow">6.60</div></div>
+      <div class="rj-item"><div class="rj-label">⚡ Claudio</div><div class="rj-val score score-green">7.20</div></div>
+    </div>
+    <div class="repo-line">https://github.com/Lo0ker-Noma/nostr-kahoot</div>
+  </div>
+  <div class="reveal-hint" id="s13-hint">ESPACIO para revelar ▶</div>
+</div>
+
+<div class="slide award-slide" id="s14" data-award="true">
+  <div class="award-suspense" id="s14-suspense"><div class="pos-medal">🏅</div><div class="pos-label">5° Puesto</div><div class="pos-number">5°</div></div>
+  <div class="award-reveal" id="s14-reveal">
+    <div class="reveal-medal">🏅</div>
+    <div class="reveal-project-name">Nostr en el Espacio</div>
+    <div class="reveal-team">Naranja</div>
+    <div class="reveal-score-big">6.39</div>
+    
+    <div class="reveal-quote">“La identidad se entiende mejor cuando la ves como red viva.”</div>
+    <div class="reveal-desc">Visualizador de identidad Nostr como universo/grafo: follows, comunidades, relays y zaps.<br><span class="accent">Más visual · herramienta educativa · demo verificada</span></div>
+    <div class="reveal-judges">
+      <div class="rj-item"><div class="rj-label">🤖 Gorilatron</div><div class="rj-val score score-yellow">6.20</div></div>
+      <div class="rj-item"><div class="rj-label">🦍 Gorilator</div><div class="rj-val score score-yellow">6.55</div></div>
+      <div class="rj-item"><div class="rj-label">⚡ Claudio</div><div class="rj-val score score-yellow">6.42</div></div>
+    </div>
+    <div class="repo-line">https://github.com/soyezequiel/nostr-en-el-espacio</div>
+  </div>
+  <div class="reveal-hint" id="s14-hint">ESPACIO para revelar ▶</div>
+</div>
+
+<div class="slide award-slide" id="s15" data-award="true">
+  <div class="award-suspense" id="s15-suspense"><div class="pos-medal">🏅</div><div class="pos-label">4° Puesto</div><div class="pos-number">4°</div></div>
+  <div class="award-reveal" id="s15-reveal">
+    <div class="reveal-medal">🏅</div>
+    <div class="reveal-project-name">Hash21 — Arte, Identidad y Bitcoin</div>
+    <div class="reveal-team">Lai, Ragnar</div>
+    <div class="reveal-score-big">6.98</div>
+    <div class="reveal-special">🎨 Mejor experiencia visual — arte real, tienda real, cultura Bitcoin</div>
+    <div class="reveal-quote">“No es un demo. Es cultura Bitcoin con artistas reales.”</div>
+    <div class="reveal-desc">Arte, identidad y Bitcoin: galería real, artistas reales, certificación y pagos Lightning.<br><span class="accent">Mejor estética · negocio real · OpenTimestamps</span></div>
+    <div class="reveal-judges">
+      <div class="rj-item"><div class="rj-label">🤖 Gorilatron</div><div class="rj-val score score-red">5.00</div></div>
+      <div class="rj-item"><div class="rj-label">🦍 Gorilator</div><div class="rj-val score score-green">8.05</div></div>
+      <div class="rj-item"><div class="rj-label">⚡ Claudio</div><div class="rj-val score score-green">7.90</div></div>
+    </div>
+    <div class="repo-line">https://github.com/warrior-lai/hash-21</div>
+  </div>
+  <div class="reveal-hint" id="s15-hint">ESPACIO para revelar ▶</div>
+</div>
+
+<div class="slide award-slide" id="s16" data-award="true">
+  <div class="award-suspense" id="s16-suspense"><div class="pos-medal">🥉</div><div class="pos-label">3° Puesto</div><div class="pos-number">3°</div></div>
+  <div class="award-reveal" id="s16-reveal">
+    <div class="reveal-medal">🥉</div>
+    <div class="reveal-project-name">Tamagostrich</div>
+    <div class="reveal-team">Negr0</div>
+    <div class="reveal-score-big">7.19</div>
+    
+    <div class="reveal-quote">“Si la identidad Nostr puede ser divertida, puede onboardear gente.”</div>
+    <div class="reveal-desc">Mascota Nostr que vive de zaps, follows y reacciones. Identidad social convertida en juego.<br><span class="accent">Idea memorable · demo viva · onboarding simple</span></div>
+    <div class="reveal-judges">
+      <div class="rj-item"><div class="rj-label">🤖 Gorilatron</div><div class="rj-val score score-yellow">6.90</div></div>
+      <div class="rj-item"><div class="rj-label">🦍 Gorilator</div><div class="rj-val score score-green">7.35</div></div>
+      <div class="rj-item"><div class="rj-label">⚡ Claudio</div><div class="rj-val score score-green">7.33</div></div>
+    </div>
+    <div class="repo-line">https://github.com/Negr087/tamagostrich</div>
+  </div>
+  <div class="reveal-hint" id="s16-hint">ESPACIO para revelar ▶</div>
+</div>
+
+<div class="slide award-slide" id="s17" data-award="true">
+  <div class="award-suspense" id="s17-suspense"><div class="pos-medal">🥈</div><div class="pos-label">2° Puesto</div><div class="pos-number">2°</div></div>
+  <div class="award-reveal" id="s17-reveal">
+    <div class="reveal-medal">🥈</div>
+    <div class="reveal-project-name">Obelisk</div>
+    <div class="reveal-team">Fabricio, Topolino</div>
+    <div class="reveal-score-big">7.54</div>
+    
+    <div class="reveal-quote">“No es login con Nostr. Es infraestructura social para comunidades soberanas.”</div>
+    <div class="reveal-desc">Foro soberano sobre Nostr para comunidades: reputación, relays, moderación y estructura social.<br><span class="accent">Producto claro · demo verificada · visión de comunidad</span></div>
+    <div class="reveal-judges">
+      <div class="rj-item"><div class="rj-label">🤖 Gorilatron</div><div class="rj-val score score-yellow">6.00</div></div>
+      <div class="rj-item"><div class="rj-label">🦍 Gorilator</div><div class="rj-val score score-green">8.65</div></div>
+      <div class="rj-item"><div class="rj-label">⚡ Claudio</div><div class="rj-val score score-green">7.97</div></div>
+    </div>
+    <div class="repo-line">https://github.com/Fabricio333/obelisk</div>
+  </div>
+  <div class="reveal-hint" id="s17-hint">ESPACIO para revelar ▶</div>
+</div>
+
+<div class="slide award-slide" id="s18" data-award="true">
+  <div class="award-suspense" id="s18-suspense"><div class="pos-medal">🥇</div><div class="pos-label">1° Puesto</div><div class="pos-number">1°</div></div>
+  <div class="award-reveal" id="s18-reveal">
+    <div class="reveal-medal">🥇</div>
+    <div class="reveal-project-name">Arena</div>
+    <div class="reveal-team">Anix, Wander</div>
+    <div class="reveal-score-big">8.17</div>
+    <div class="reveal-special">🏆 Proyecto más completo — 11 NIPs · 369 tests · reputación portable</div>
+    <div class="reveal-quote">“El proyecto más completo: reputación portable, Nostr profundo y ejecución seria.”</div>
+    <div class="reveal-desc">Plataforma de challenges donde las victorias viven como badges NIP-58 en tu identidad Nostr.<br><span class="accent">11 NIPs · 369 tests · badges, zaps, proofs y payouts</span></div>
+    <div class="reveal-judges">
+      <div class="rj-item"><div class="rj-label">🤖 Gorilatron</div><div class="rj-val score score-green">8.00</div></div>
+      <div class="rj-item"><div class="rj-label">🦍 Gorilator</div><div class="rj-val score score-green">8.20</div></div>
+      <div class="rj-item"><div class="rj-label">⚡ Claudio</div><div class="rj-val score score-green">8.32</div></div>
+    </div>
+    <div class="repo-line">https://github.com/bitbybit-ar/bitbybit-arena</div>
+  </div>
+  <div class="reveal-hint" id="s18-hint">ESPACIO para revelar ▶</div>
+</div>
+
+<div class="slide eval-slide" id="s19">
+  <div class="eyebrow fade-in">#1 · detalle</div>
+  <div class="title-md fade-in"><span class="accent">Arena</span></div>
+  <div class="body-lg fade-in mt-4" style="max-width:920px;">Plataforma de challenges donde las victorias viven como badges NIP-58 en tu identidad Nostr.</div>
+  <img src="reports/demo-arena.png" class="demo-shot fade-in" alt="Demo Arena">
+  <div class="mini-grid fade-in">
+    <div class="mini-card"><strong>Score final</strong><br>8.17/10</div>
+    <div class="mini-card"><strong>Dato clave</strong><br>11 NIPs · 369 tests · badges, zaps, proofs y payouts</div>
+    <div class="mini-card"><strong>Demo</strong><br>https://arena.bitbybit.com.ar</div>
+    <div class="mini-card"><strong>Nota</strong><br>Demo verificada con Playwright; sin penalización por demo.</div>
+  </div>
+</div>
+
+<div class="slide eval-slide" id="s20">
+  <div class="eyebrow fade-in">#2 · detalle</div>
+  <div class="title-md fade-in"><span class="accent">Obelisk</span></div>
+  <div class="body-lg fade-in mt-4" style="max-width:920px;">Foro soberano sobre Nostr para comunidades: reputación, relays, moderación y estructura social.</div>
+  <img src="reports/demo-obelisk.png" class="demo-shot fade-in" alt="Demo Obelisk">
+  <div class="mini-grid fade-in">
+    <div class="mini-card"><strong>Score final</strong><br>7.54/10</div>
+    <div class="mini-card"><strong>Dato clave</strong><br>Producto claro · demo verificada · visión de comunidad</div>
+    <div class="mini-card"><strong>Demo</strong><br>https://obelisk.ar</div>
+    <div class="mini-card"><strong>Nota</strong><br>Demo verificada con Playwright; sin penalización por demo.</div>
+  </div>
+</div>
+
+<div class="slide eval-slide" id="s21">
+  <div class="eyebrow fade-in">#3 · detalle</div>
+  <div class="title-md fade-in"><span class="accent">Tamagostrich</span></div>
+  <div class="body-lg fade-in mt-4" style="max-width:920px;">Mascota Nostr que vive de zaps, follows y reacciones. Identidad social convertida en juego.</div>
+  <img src="reports/demo-tamagostrich.png" class="demo-shot fade-in" alt="Demo Tamagostrich">
+  <div class="mini-grid fade-in">
+    <div class="mini-card"><strong>Score final</strong><br>7.19/10</div>
+    <div class="mini-card"><strong>Dato clave</strong><br>Idea memorable · demo viva · onboarding simple</div>
+    <div class="mini-card"><strong>Demo</strong><br>https://tamagostrich.vercel.app</div>
+    <div class="mini-card"><strong>Nota</strong><br>Demo verificada con Playwright; sin penalización por demo.</div>
+  </div>
+</div>
+
+<div class="slide eval-slide" id="s22">
+  <div class="eyebrow fade-in">#4 · detalle</div>
+  <div class="title-md fade-in"><span class="accent">Hash21 — Arte, Identidad y Bitcoin</span></div>
+  <div class="body-lg fade-in mt-4" style="max-width:920px;">Arte, identidad y Bitcoin: galería real, artistas reales, certificación y pagos Lightning.</div>
+  <img src="reports/demo-hash21.png" class="demo-shot fade-in" alt="Demo Hash21 — Arte, Identidad y Bitcoin">
+  <div class="mini-grid fade-in">
+    <div class="mini-card"><strong>Score final</strong><br>6.98/10</div>
+    <div class="mini-card"><strong>Dato clave</strong><br>Mejor estética · negocio real · OpenTimestamps</div>
+    <div class="mini-card"><strong>Demo</strong><br>https://hash21.studio</div>
+    <div class="mini-card"><strong>Nota</strong><br>Demo verificada; warning menor: runtime error supabase is not defined puede afectar flujos autenticados.</div>
+  </div>
+</div>
+
+<div class="slide" id="s23" style="align-items:flex-start; justify-content:flex-start; padding-top:70px;">
+  <div class="eyebrow fade-in">Los que quedaron afuera</div>
+  <div class="title-sm fade-in">Puestos 7 y 8. <span class="accent">No eran malos. Les faltó cierre.</span></div>
+  <div class="rank-list">
+    <div class="rank-item fade-in"><span class="rank-pos">7°</span><span class="rank-project">Scammer & Come Empanadas Detector</span><span class="rank-team">Looker</span><span class="rank-score score score-yellow">6.25</span></div>
+    <div class="rank-item fade-in"><span class="rank-pos">8°</span><span class="rank-project">Predictr</span><span class="rank-team">Nico</span><span class="rank-score score score-yellow">6.02</span></div>
+  </div>
+  <div class="findings-list" style="margin-top:26px;">
+    <div class="finding-item fi-green fade-in"><span class="fi-icon">🛡️</span><span><strong>Scammer:</strong> demo viva y problema real de comunidad; perdió por deuda técnica/tests.</span></div>
+    <div class="finding-item fi-yellow fade-in"><span class="fi-icon">🧠</span><span><strong>Predictr:</strong> la idea más Bitcoin-hardcore; sin demo, no podía subir más.</span></div>
+  </div>
+</div>
+
+<div class="slide eval-slide" id="s24">
+  <div class="eyebrow fade-in">Lecciones</div>
+  <div class="title-md fade-in">Qué aprendimos de <span class="accent">IDENTITY</span></div>
+  <div class="findings-list">
+    <div class="finding-item fi-green fade-in"><span class="fi-icon">🪪</span><span>La identidad más fuerte fue la que generó <strong>reputación portable</strong>, no solo login.</span></div>
+    <div class="finding-item fi-green fade-in"><span class="fi-icon">⚡</span><span>Los mejores proyectos usaron Nostr como infraestructura, no como checkbox.</span></div>
+    <div class="finding-item fi-yellow fade-in"><span class="fi-icon">🧪</span><span>En una hackathon con jueces AI, tests y reproducibilidad pesan más de lo que parece.</span></div>
+    <div class="finding-item fi-red fade-in"><span class="fi-icon">📉</span><span>Sin demo pública, una idea brillante se vuelve promesa. Y la promesa puntúa menos.</span></div>
+  </div>
+  <div class="eval-quote fade-in">Don’t trust. Verify. También aplica a demos.</div>
+</div>
+
+<div class="slide" id="s25">
+  <div class="logo-close fade-in"><img src="https://raw.githubusercontent.com/lacrypta/branding/main/iso/512-white.png" alt="La Crypta" style="width:100px;height:auto;display:block;margin:0 auto;"></div>
+  <div class="closing-stats">
+    <div class="closing-line accent fade-in">8 proyectos. 6 ganadores. 6 demos verificadas.</div>
+    <div class="divider fade-in" style="margin: 8px auto;"></div>
+    <div class="closing-line fade-in">Esto fue IDENTITY.</div>
+    <div class="closing-line muted fade-in">La hackathon de identidad soberana de La Crypta.</div>
+    <div class="closing-line muted fade-in">La reputación no debería vivir presa de una app.</div>
+    <div class="closing-line muted fade-in">Si tu identidad no es portable, no es tuya.</div>
+  </div>
+  <div class="btc-death fade-in">Bitcoin o Muerte. 💀</div>
+  <div class="fade-in mt-6" style="width:200px;margin:0 auto;"><img src="https://raw.githubusercontent.com/lacrypta/branding/main/title/512-white.png" alt="La Crypta" style="width:100%;opacity:0.6;"></div>
+</div>
+</div>
+
+<button class="nav-arrow prev" id="prevBtn" onclick="navigate(-1)">←</button>
+<button class="nav-arrow next" id="nextBtn" onclick="navigate(1)">→</button>
+<div class="nav-dots" id="navDots"></div>
+<div class="slide-counter" id="slideCounter"></div>
+<script>
+  const TOTAL = 25;
+  let current = 0;
+  let transitioning = false;
+  const awardState = {13: 0, 14: 0, 15: 0, 16: 0, 17: 0, 18: 0};
+  const dotsContainer = document.getElementById('navDots');
+  for (let i = 0; i < TOTAL; i++) { const d = document.createElement('div'); d.className = 'dot'; d.onclick = () => goTo(i); dotsContainer.appendChild(d); }
+  function getSlide(i) { return document.getElementById('s' + (i + 1)); }
+  function updateUI() {
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    document.getElementById('slideCounter').textContent = (current + 1) + ' / ' + TOTAL;
+    document.getElementById('progressBar').style.width = (((current + 1) / TOTAL) * 100) + '%';
+    document.getElementById('prevBtn').style.opacity = current === 0 ? '0.2' : '1';
+    document.getElementById('nextBtn').style.opacity = current === TOTAL - 1 ? '0.2' : '1';
+  }
+  function goTo(index) {
+    if (index === current || transitioning || index < 0 || index >= TOTAL) return;
+    transitioning = true;
+    const oldSlide = getSlide(current); const newSlide = getSlide(index); const dir = index > current ? -1 : 1;
+    oldSlide.classList.remove('active'); oldSlide.style.transform = `translateX(${dir * -60}px)`;
+    newSlide.style.transform = `translateX(${dir * 60}px)`; newSlide.classList.add('active');
+    requestAnimationFrame(() => { newSlide.style.transform = 'translateX(0)'; });
+    current = index; updateUI(); setTimeout(() => { transitioning = false; oldSlide.style.transform = ''; }, 600);
+  }
+  function navigate(dir) {
+    const slideNum = current + 1;
+    if (dir > 0 && awardState.hasOwnProperty(slideNum) && awardState[slideNum] === 0) { revealAward(slideNum); return; }
+    goTo(current + dir);
+  }
+  function revealAward(slideNum) {
+    awardState[slideNum] = 1;
+    const suspense = document.getElementById('s' + slideNum + '-suspense');
+    const reveal = document.getElementById('s' + slideNum + '-reveal');
+    const hint = document.getElementById('s' + slideNum + '-hint');
+    if (suspense) suspense.style.opacity = '0';
+    if (suspense) suspense.style.transform = 'scale(0.8)';
+    setTimeout(() => { if (suspense) suspense.style.display = 'none'; if (reveal) reveal.classList.add('show'); if (hint) hint.textContent = '→ siguiente'; }, 400);
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); navigate(1); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); navigate(-1); }
+    if (e.key === 'Home') goTo(0); if (e.key === 'End') goTo(TOTAL - 1);
+  });
+  let touchStartX = 0; document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+  document.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - touchStartX; if (Math.abs(dx) > 50) navigate(dx < 0 ? 1 : -1); });
+  getSlide(0).classList.add('active'); updateUI();
+</script>
+</body>
+</html>
