@@ -62,6 +62,57 @@
   /* Spacing */
   --section-padding: 120px;
   --container-width: 1200px;
+  --banner-height: 52px;
+}
+
+/* ===== TOP BANNER ===== */
+.top-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, #00cc7d 0%, #00ff9d 50%, #00cc7d 100%);
+  background-size: 200% auto;
+  animation: banner-shine 4s linear infinite;
+  color: #000;
+  text-decoration: none;
+  padding: 14px 24px;
+  height: var(--banner-height);
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  transition: filter 0.2s;
+}
+.top-banner:hover {
+  filter: brightness(1.1);
+}
+.top-banner-text {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.top-banner-text strong {
+  font-weight: 800;
+  font-size: 1.15rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@keyframes banner-shine {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+@media (max-width: 600px) {
+  :root { --banner-height: 64px; }
+  .top-banner-text { font-size: 0.85rem; gap: 6px; }
+  .top-banner-text strong { font-size: 0.95rem; }
 }
 
 /* ===== RESET ===== */
@@ -170,7 +221,7 @@ body.menu-open {
 /* ===== NAVBAR ===== */
 .navbar {
   position: fixed;
-  top: 0;
+  top: var(--banner-height);
   left: 0;
   right: 0;
   z-index: 1000;
@@ -237,7 +288,7 @@ body.menu-open {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 120px 0 80px;
+  padding: calc(120px + var(--banner-height)) 0 80px;
   overflow: hidden;
 }
 
