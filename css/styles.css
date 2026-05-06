@@ -210,6 +210,21 @@ body.menu-open {
   font-size: 18px;
 }
 
+.hero-lacrypta-btn {
+  padding: 22px 56px;
+  font-size: 1.35rem;
+  border-radius: 12px;
+  letter-spacing: 0.02em;
+}
+.hero-lacrypta-btn:hover .btn-icon {
+  transform: none;
+  animation: zap 0.4s ease infinite alternate;
+}
+@keyframes zap {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0.6; transform: scale(1.3); }
+}
+
 .btn-icon {
   transition: transform 0.3s ease;
 }
