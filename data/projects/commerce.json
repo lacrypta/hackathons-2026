@@ -1,0 +1,28 @@
+{
+    "$schema": "../projects-schema.json",
+    "hackathon": "commerce",
+    "month": "Junio 2026",
+    "projects": [
+        {
+            "id": "wapify",
+            "name": "Wapify",
+            "description": "Shopify + Huapi. eCommerce minimalista con pagos P2P integrados via Huapi para vendedores LATAM. Setup en <5 min.",
+            "team": [
+                {
+                    "name": "Lo0ker-Noma",
+                    "github": "Lo0ker-Noma",
+                    "role": "Lead Dev"
+                }
+            ],
+            "repo": "https://github.com/Lo0ker-Noma/wapify",
+            "tech": [
+                "Next.js",
+                "Express",
+                "Supabase",
+                "Huapi API"
+            ],
+            "status": "building",
+            "submittedAt": "2026-05-06"
+        }
+    ]
+}
