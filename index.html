@@ -294,10 +294,27 @@ body { background: #000; color: #fff; font-family: 'Standerd', -apple-system, sa
 .footer a:hover { color: #00ff9d; }
 .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; flex-wrap: wrap; }
 
+/* ── PROVISIONAL BADGE ── */
+.provisional-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,200,0,.8);
+  background: rgba(255,200,0,.08);
+  border: 1px solid rgba(255,200,0,.2);
+  border-radius: 6px;
+  padding: 4px 10px;
+  margin-top: 10px;
+}
+
 /* ── MOBILE ── */
 @media (max-width: 600px) {
   .hackathon-prize-badge { text-align: left; }
-  .td-score { display: none; }
+  .td-score, .th-score { display: none; }
   .td-prize { width: 110px; }
   .prize-chip { font-size: .72rem; padding: 3px 8px; }
 }
@@ -317,7 +334,7 @@ body { background: #000; color: #fff; font-family: 'Standerd', -apple-system, sa
 
   <div class="hero-domain" aria-hidden="true">lacrypta.dev</div>
 
-  <a href="https://lacrypta.dev" target="_blank" class="hero-cta">
+  <a href="https://lacrypta.dev" target="_blank" rel="noopener noreferrer" class="hero-cta">
     Ir al sitio oficial <span class="arrow">→</span>
   </a>
 
@@ -353,7 +370,7 @@ body { background: #000; color: #fff; font-family: 'Standerd', -apple-system, sa
         <tr>
           <th>#</th>
           <th>Proyecto</th>
-          <th class="right">Score</th>
+          <th class="right th-score">Score</th>
           <th class="right">Premio</th>
         </tr>
       </thead>
@@ -365,7 +382,7 @@ body { background: #000; color: #fff; font-family: 'Standerd', -apple-system, sa
           <td class="td-prize"><span class="prize-chip gold">400,000 sats</span></td>
         </tr>
         <tr class="top3">
-          <td class="td-rank gold">#1</td>
+          <td class="td-rank silver">#2</td>
           <td><div class="td-project">Stacktris</div><div class="td-team">landaverdend</div></td>
           <td class="td-score">7.49</td>
           <td class="td-prize"><span class="prize-chip silver">250,000 sats</span></td>
@@ -459,6 +476,7 @@ body { background: #000; color: #fff; font-family: 'Standerd', -apple-system, sa
         <div class="hackathon-num">Hackathon #2 · Abril 2026</div>
         <div class="hackathon-name">🔐 IDENTITY</div>
         <div class="hackathon-focus">Nostr Identity &amp; Social</div>
+        <div class="provisional-note">⚠ Resultados provisorios — pendiente publicación oficial</div>
       </div>
       <div class="hackathon-prize-badge">
         <div class="prize-number">1,000,000</div>
@@ -471,7 +489,7 @@ body { background: #000; color: #fff; font-family: 'Standerd', -apple-system, sa
         <tr>
           <th>#</th>
           <th>Proyecto</th>
-          <th class="right">Score</th>
+          <th class="right th-score">Score</th>
           <th class="right">Premio</th>
         </tr>
       </thead>
@@ -483,7 +501,7 @@ body { background: #000; color: #fff; font-family: 'Standerd', -apple-system, sa
           <td class="td-prize"><span class="prize-chip gold">400,000 sats</span></td>
         </tr>
         <tr class="top3">
-          <td class="td-rank gold">#1</td>
+          <td class="td-rank silver">#2</td>
           <td><div class="td-project">Stacktris</div><div class="td-team">landaverdend</div></td>
           <td class="td-score">7.49</td>
           <td class="td-prize"><span class="prize-chip silver">250,000 sats</span></td>
@@ -572,7 +590,7 @@ body { background: #000; color: #fff; font-family: 'Standerd', -apple-system, sa
 
   <!-- bottom CTA -->
   <div style="text-align:center; padding-top: 20px;">
-    <a href="https://lacrypta.dev" target="_blank" class="hero-cta" style="font-size:1.05rem; padding:16px 40px;">
+    <a href="https://lacrypta.dev" target="_blank" rel="noopener noreferrer" class="hero-cta" style="font-size:1.05rem; padding:16px 40px;">
       Seguir participando en lacrypta.dev <span class="arrow">→</span>
     </a>
   </div>
@@ -581,10 +599,10 @@ body { background: #000; color: #fff; font-family: 'Standerd', -apple-system, sa
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-links">
-    <a href="https://lacrypta.dev" target="_blank">lacrypta.dev</a>
-    <a href="https://discord.com/invite/SN8JNhMgvY" target="_blank">Discord</a>
-    <a href="https://github.com/lacrypta" target="_blank">GitHub</a>
-    <a href="https://twitter.com/LaCryptaOk" target="_blank">Twitter</a>
+    <a href="https://lacrypta.dev" target="_blank" rel="noopener noreferrer">lacrypta.dev</a>
+    <a href="https://discord.com/invite/SN8JNhMgvY" target="_blank" rel="noopener noreferrer">Discord</a>
+    <a href="https://github.com/lacrypta" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a href="https://twitter.com/LaCryptaOk" target="_blank" rel="noopener noreferrer">Twitter</a>
     <a href="docs/reglas.html">Reglas</a>
     <a href="docs/codigo-conducta.html">Código de conducta</a>
   </div>
