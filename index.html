@@ -4,561 +4,610 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lightning Hackathons 2026 — La Crypta</title>
-<meta name="description" content="La primera hackathon de Bitcoin con jurado 100% AI. 8 meses, 8 desafíos, premios en BTC vía Lightning Network.">
+<meta name="description" content="La Crypta Lightning Hackathons 2026 — Resultados y proyectos. La seguimos en lacrypta.dev">
 <meta property="og:title" content="Lightning Hackathons 2026 — La Crypta">
-<meta property="og:description" content="La primera hackathon de Bitcoin con jurado 100% AI. Premios en BTC vía Lightning.">
+<meta property="og:description" content="Resultados de las hackathons. La seguimos en lacrypta.dev">
 <meta property="og:image" content="assets/og-image.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 <link rel="stylesheet" href="css/styles.css">
+<style>
+/* ── RESET OVERRIDES ── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: #000; color: #fff; font-family: 'Standerd', -apple-system, sans-serif; overflow-x: hidden; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 24px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 100% 60% at 50% 0%,   rgba(0,255,157,.12) 0%, transparent 60%),
+    radial-gradient(ellipse  60% 40% at 80% 100%,  rgba(153,69,255,.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  font-size: .9rem;
+  font-weight: 600;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: #00ff9d;
+  margin-bottom: 28px;
+  opacity: .9;
+}
+
+.hero-title {
+  font-family: 'Blatant', 'Standerd', sans-serif;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -2px;
+  margin-bottom: 12px;
+}
+.hero-title .line1 {
+  display: block;
+  font-size: clamp(2.8rem, 8vw, 6rem);
+  color: #fff;
+}
+.hero-title .line2 {
+  display: block;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  background: linear-gradient(90deg, #00ff9d 0%, #00cc7d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.05;
+}
+.hero-title .line3 {
+  display: block;
+  font-size: clamp(3rem, 10vw, 7.5rem);
+  color: #fff;
+}
+
+.hero-domain {
+  font-family: 'Blatant', monospace;
+  font-size: clamp(2.2rem, 7vw, 5.5rem);
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: #00ff9d;
+  text-shadow: 0 0 60px rgba(0,255,157,.5), 0 0 120px rgba(0,255,157,.2);
+  margin-bottom: 44px;
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+@keyframes pulse-glow {
+  0%, 100% { text-shadow: 0 0 40px rgba(0,255,157,.4), 0 0 80px rgba(0,255,157,.15); }
+  50%       { text-shadow: 0 0 80px rgba(0,255,157,.7), 0 0 160px rgba(0,255,157,.3); }
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #00ff9d;
+  color: #000;
+  text-decoration: none;
+  font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+  font-weight: 800;
+  padding: 20px 52px;
+  border-radius: 100px;
+  letter-spacing: .03em;
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 0 40px rgba(0,255,157,.35);
+  margin-bottom: 24px;
+}
+.hero-cta:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 0 70px rgba(0,255,157,.55);
+}
+.hero-cta .arrow { font-size: 1.4em; transition: transform .2s; }
+.hero-cta:hover .arrow { transform: translateX(5px); }
+
+.hero-sub {
+  font-size: .95rem;
+  color: rgba(255,255,255,.4);
+  letter-spacing: .04em;
+}
+
+/* ── RESULTS ── */
+.results {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px 120px;
+}
+
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,255,157,.3), transparent);
+  margin-bottom: 80px;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 48px;
+}
+.section-label-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,.08);
+}
+.section-label-text {
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.35);
+  white-space: nowrap;
+}
+
+/* ── HACKATHON BLOCK ── */
+.hackathon-block { margin-bottom: 80px; }
+
+.hackathon-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.hackathon-meta {}
+.hackathon-num {
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.35);
+  margin-bottom: 4px;
+}
+.hackathon-name {
+  font-family: 'Blatant', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+.hackathon-focus {
+  font-size: .95rem;
+  color: rgba(255,255,255,.45);
+  margin-top: 6px;
+}
+.hackathon-prize-badge {
+  text-align: right;
+  flex-shrink: 0;
+}
+.prize-number {
+  font-family: 'Blatant', sans-serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  color: #00ff9d;
+  line-height: 1;
+}
+.prize-label {
+  font-size: .8rem;
+  color: rgba(255,255,255,.35);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-top: 2px;
+}
+
+/* ── TABLE ── */
+.leaderboard {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .9rem;
+}
+.leaderboard thead th {
+  text-align: left;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.25);
+  padding: 0 12px 14px;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.leaderboard thead th.right { text-align: right; }
+
+.leaderboard tbody tr {
+  border-bottom: 1px solid rgba(255,255,255,.04);
+  transition: background .15s;
+}
+.leaderboard tbody tr:hover { background: rgba(255,255,255,.03); }
+.leaderboard tbody tr.top3 { border-bottom-color: rgba(255,255,255,.07); }
+
+.leaderboard td {
+  padding: 14px 12px;
+  vertical-align: middle;
+}
+
+/* rank */
+.td-rank {
+  width: 48px;
+  font-family: 'Blatant', monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgba(255,255,255,.2);
+}
+.td-rank.gold   { color: #ffc800; }
+.td-rank.silver { color: #c0c0c0; }
+.td-rank.bronze { color: #cd7f32; }
+
+/* project */
+.td-project { font-weight: 600; color: #fff; }
+.td-team    { font-size: .82rem; color: rgba(255,255,255,.4); margin-top: 2px; }
+
+/* score */
+.td-score {
+  width: 72px;
+  text-align: right;
+  font-family: monospace;
+  font-size: .85rem;
+  color: rgba(255,255,255,.4);
+}
+
+/* prize */
+.td-prize {
+  width: 140px;
+  text-align: right;
+}
+.prize-chip {
+  display: inline-block;
+  background: rgba(0,255,157,.1);
+  border: 1px solid rgba(0,255,157,.2);
+  color: #00ff9d;
+  font-size: .78rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+.prize-chip.gold   { background: rgba(255,200,0,.12); border-color: rgba(255,200,0,.3); color: #ffc800; }
+.prize-chip.silver { background: rgba(192,192,192,.1); border-color: rgba(192,192,192,.25); color: #c0c0c0; }
+.prize-chip.bronze { background: rgba(205,127,50,.1); border-color: rgba(205,127,50,.25); color: #cd7f32; }
+
+/* ── FOOTER ── */
+.footer {
+  border-top: 1px solid rgba(255,255,255,.06);
+  padding: 40px 24px;
+  text-align: center;
+  color: rgba(255,255,255,.2);
+  font-size: .82rem;
+}
+.footer a { color: rgba(255,255,255,.35); text-decoration: none; }
+.footer a:hover { color: #00ff9d; }
+.footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; flex-wrap: wrap; }
+
+/* ── PROVISIONAL BADGE ── */
+.provisional-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,200,0,.8);
+  background: rgba(255,200,0,.08);
+  border: 1px solid rgba(255,200,0,.2);
+  border-radius: 6px;
+  padding: 4px 10px;
+  margin-top: 10px;
+}
+
+/* ── MOBILE ── */
+@media (max-width: 600px) {
+  .hackathon-prize-badge { text-align: left; }
+  .td-score, .th-score { display: none; }
+  .td-prize { width: 110px; }
+  .prize-chip { font-size: .72rem; padding: 3px 8px; }
+}
+</style>
 </head>
 <body>
 
-<!-- Top Banner -->
-<a href="https://lacrypta.dev" target="_blank" class="top-banner">
-  <span class="top-banner-text">
-    ⚡ ¡La hackathon ya tiene su sitio oficial!
-    <strong>Visitá lacrypta.dev</strong>
-    para toda la info actualizada →
-  </span>
-</a>
-
-<!-- GitHub Corner -->
-<a href="https://github.com/lacrypta/hackathons-2026" class="github-corner" target="_blank" aria-label="Fork on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#00ff9d; color:#000; position: absolute; top: 0; border: 0; right: 0; z-index: 1001;"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.9,137.5 138.8,138.2 138.8,138.2 L125.4,125.4 L115.0,115.0 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:768px){.github-corner{display:none}}</style>
-
-<!-- Navbar -->
-<nav class="navbar">
-  <div class="nav-container">
-    <a href="https://hackaton.lacrypta.ar" class="nav-logo">
-      <img src="https://raw.githubusercontent.com/lacrypta/branding/refs/heads/main/title/512-white-transparent.png" alt="La Crypta" height="32">
-    </a>
-    <div class="nav-links">
-      <a href="hackathons.html">Hackathons</a>
-      <a href="#jurado">Jurado AI</a>
-      <a href="#pilares">Pilares</a>
-      <a href="#roadmap">Roadmap</a>
-      <a href="#faq">FAQ</a>
-      <a href="https://lacrypta.dev" target="_blank" class="btn btn-nav btn-primary">lacrypta.dev ⚡</a>
-    </div>
-    <button class="nav-toggle" onclick="toggleMenu()">☰</button>
-  </div>
-</nav>
-
-<!-- Hero Section -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="badge-icon">⚡</span>
-        Primera hackathon de Bitcoin con jurado 100% AI
-      </div>
-      
-      <h1 class="hero-title">
-        <span class="title-line">Lightning</span>
-        <span class="title-line gradient">Hackathons</span>
-        <span class="title-line year">2026</span>
-      </h1>
-      
-      <p class="hero-tagline">
-        8 meses · 8 desafíos · Jurado 100% AI · Premios en BTC
-      </p>
-      
-      <p class="hero-description">
-        Aprendé a construir en Bitcoin, Lightning y Nostr sin conocimiento previo y recibiendo premios en el proceso.
-      </p>
-      
-      <div class="hero-cta">
-        <a href="https://lacrypta.dev" target="_blank" class="btn btn-primary btn-large btn-glow hero-lacrypta-btn">
-          <span>Participar en lacrypta.dev</span>
-          <span class="btn-icon">⚡</span>
-        </a>
-      </div>
-      
-      <div class="hero-stats">
-        <div class="stat">
-          <span class="stat-value">16M</span>
-          <span class="stat-label">sats en premios</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat">
-          <span class="stat-value">8</span>
-          <span class="stat-label">hackathons</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat">
-          <span class="stat-value">3</span>
-          <span class="stat-label">jueces AI</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  
+  <p class="hero-eyebrow">⚡ Lightning Hackathons 2026 · La Crypta</p>
+
+  <h1 class="hero-title">
+    <span class="line1">La seguimos en</span>
+    <span class="line2">lacrypta</span>
+    <span class="line3">.dev</span>
+  </h1>
+
+  <div class="hero-domain" aria-hidden="true">lacrypta.dev</div>
+
+  <a href="https://lacrypta.dev" target="_blank" rel="noopener noreferrer" class="hero-cta">
+    Ir al sitio oficial <span class="arrow">→</span>
+  </a>
+
+  <p class="hero-sub">Todos los hackathons, proyectos y premios en lacrypta.dev</p>
 </section>
 
-<!-- Active Hackathon Banner -->
-<section class="active-hackathon">
-  <div class="container">
-    <a href="hackathons/identity.html" class="active-hackathon-card">
-      <div class="active-hackathon-badge">
-        <span class="pulse"></span>
-        <span>🔐 HACKATHON ACTIVA</span>
-      </div>
-      <div class="active-hackathon-content">
-        <div class="active-hackathon-number">#2</div>
-        <div class="active-hackathon-info">
-          <h2>IDENTITY</h2>
-          <p class="active-hackathon-focus">Nostr Identity & Social</p>
-          <p class="active-hackathon-dates">📅 Abril 2026 · 4 Community Calls · Inscripciones abiertas</p>
-        </div>
-        <div class="active-hackathon-prize">
-          <div class="prize-amount">1,000,000</div>
-          <div class="prize-unit">sats en premios</div>
-        </div>
-        <div class="active-hackathon-cta">
-          Ver detalles →
-        </div>
-      </div>
-    </a>
+<!-- RESULTS -->
+<div class="results">
+  <div class="section-divider"></div>
+
+  <div class="section-label">
+    <span class="section-label-line"></span>
+    <span class="section-label-text">Lo que construimos</span>
+    <span class="section-label-line"></span>
   </div>
-</section>
 
-<!-- Jurado Section -->
-<section class="jurado" id="jurado">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-label">El jurado</span>
-      <h2 class="section-title">100% AI. Cero sesgos.</h2>
-      <p class="section-description">
-        Primera hackathon de Bitcoin evaluada por agentes autónomos. 
-        Tres perspectivas. Transparencia total.
-      </p>
-    </div>
-    
-    <div class="judges-grid">
-      <div class="judge-card" data-judge="claudio">
-        <div class="judge-glow"></div>
-        <div class="judge-avatar">
-          <img src="assets/judges/claudio.png" alt="Claudio" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-          <span class="judge-icon-fallback" style="display:none">⚡</span>
-        </div>
-        <h3 class="judge-name">Claudio</h3>
-        <span class="judge-role">Visionario / Strategy</span>
-        <div class="judge-model">
-          <span class="model-badge">Claude Opus 4.5</span>
-        </div>
-        <p class="judge-question">"¿Esto arregla el dinero?"</p>
-        <div class="judge-focus">
-          <span>Filosofía Bitcoin</span>
-          <span>Grassroots</span>
-          <span>Soberanía</span>
-        </div>
+  <!-- ── FOUNDATIONS ── -->
+  <div class="hackathon-block">
+    <div class="hackathon-header">
+      <div class="hackathon-meta">
+        <div class="hackathon-num">Hackathon #1 · Marzo 2026</div>
+        <div class="hackathon-name">⚡ FOUNDATIONS</div>
+        <div class="hackathon-focus">Lightning Payments Basics</div>
       </div>
-      
-      <div class="judge-card" data-judge="gorilatron">
-        <div class="judge-glow"></div>
-        <div class="judge-avatar">
-          <img src="assets/judges/gorilatron.png" alt="Gorilatron" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-          <span class="judge-icon-fallback" style="display:none">🤖</span>
-        </div>
-        <h3 class="judge-name">Gorilatron</h3>
-        <span class="judge-role">CTO / Code Quality</span>
-        <div class="judge-model">
-          <span class="model-badge">Claude Opus 4.5</span>
-        </div>
-        <p class="judge-question">"¿El código puede vivir en producción?"</p>
-        <div class="judge-focus">
-          <span>Clean Code</span>
-          <span>Testing</span>
-          <span>Arquitectura</span>
-        </div>
-      </div>
-      
-      <div class="judge-card" data-judge="gorilator">
-        <div class="judge-glow"></div>
-        <div class="judge-avatar">
-          <img src="assets/judges/gorilator.png" alt="Gorilator" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-          <span class="judge-icon-fallback" style="display:none">🦍</span>
-        </div>
-        <h3 class="judge-name">Gorilator</h3>
-        <span class="judge-role">Community / UX</span>
-        <div class="judge-model">
-          <span class="model-badge">Grok 3</span>
-        </div>
-        <p class="judge-question">"¿Mi abuela lo puede usar?"</p>
-        <div class="judge-focus">
-          <span>User Experience</span>
-          <span>Accesibilidad</span>
-          <span>Grassroots</span>
-        </div>
+      <div class="hackathon-prize-badge">
+        <div class="prize-number">1,000,000</div>
+        <div class="prize-label">sats en premios</div>
       </div>
     </div>
+
+    <table class="leaderboard">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Proyecto</th>
+          <th class="right th-score">Score</th>
+          <th class="right">Premio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="top3">
+          <td class="td-rank gold">#1</td>
+          <td><div class="td-project">Proof of Attendance</div><div class="td-team">Lo0ker-Noma</div></td>
+          <td class="td-score">7.49</td>
+          <td class="td-prize"><span class="prize-chip gold">400,000 sats</span></td>
+        </tr>
+        <tr class="top3">
+          <td class="td-rank silver">#2</td>
+          <td><div class="td-project">Stacktris</div><div class="td-team">landaverdend</div></td>
+          <td class="td-score">7.49</td>
+          <td class="td-prize"><span class="prize-chip silver">250,000 sats</span></td>
+        </tr>
+        <tr class="top3">
+          <td class="td-rank bronze">#3</td>
+          <td><div class="td-project">Hash21 Shop</div><div class="td-team">Abstract Lai · Ragnar</div></td>
+          <td class="td-score">7.07</td>
+          <td class="td-prize"><span class="prize-chip bronze">150,000 sats</span></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#4</td>
+          <td><div class="td-project">1 SAT a...</div><div class="td-team">unllamas · Jona</div></td>
+          <td class="td-score">7.00</td>
+          <td class="td-prize"><span class="prize-chip">100,000 sats</span></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#5</td>
+          <td><div class="td-project">BitByBit</div><div class="td-team">Anix · Llopo · Wander · Leon</div></td>
+          <td class="td-score">6.98</td>
+          <td class="td-prize"><span class="prize-chip">60,000 sats</span></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#6</td>
+          <td><div class="td-project">Digital card</div><div class="td-team">negr0</div></td>
+          <td class="td-score">6.83</td>
+          <td class="td-prize"><span class="prize-chip">40,000 sats</span></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#7</td>
+          <td><div class="td-project">Sweet Shots</div><div class="td-team">Lalo</div></td>
+          <td class="td-score">6.58</td>
+          <td class="td-prize"></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#8</td>
+          <td><div class="td-project">SatLotto V2</div><div class="td-team">Fierillo</div></td>
+          <td class="td-score">6.37</td>
+          <td class="td-prize"></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#9</td>
+          <td><div class="td-project">Wapu CLI</div><div class="td-team">Rocket · AndyCreed</div></td>
+          <td class="td-score">6.28</td>
+          <td class="td-prize"></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#10</td>
+          <td><div class="td-project">Streamsats</div><div class="td-team">Federico</div></td>
+          <td class="td-score">6.17</td>
+          <td class="td-prize"></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#11</td>
+          <td><div class="td-project">RelámPago</div><div class="td-team">Burgos</div></td>
+          <td class="td-score">5.92</td>
+          <td class="td-prize"></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#12</td>
+          <td><div class="td-project">AniRayo</div><div class="td-team">CapScabio</div></td>
+          <td class="td-score">5.85</td>
+          <td class="td-prize"></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#13</td>
+          <td><div class="td-project">SatsParty</div><div class="td-team">Cyberpunk</div></td>
+          <td class="td-score">5.42</td>
+          <td class="td-prize"></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#14</td>
+          <td><div class="td-project">NosTeach</div><div class="td-team">Fred · Langostero</div></td>
+          <td class="td-score">5.00</td>
+          <td class="td-prize"></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#15</td>
+          <td><div class="td-project">Life Action Plan</div><div class="td-team">naranja</div></td>
+          <td class="td-score">4.83</td>
+          <td class="td-prize"></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-</section>
 
-<!-- Pilares Section -->
-<section class="pilares" id="pilares">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-label">Nuestro enfoque</span>
-      <h2 class="section-title">Bitcoin como medio de intercambio</h2>
-      <p class="section-description">
-        Onchain es reserva de valor. Nosotros optimizamos las transacciones.
-        Cada hackathon permite construir con cualquiera de estas tecnologias.
-      </p>
-    </div>
-
-    <div class="pilares-grid">
-      <div class="pilar-card">
-        <div class="pilar-icon"><img src="assets/pilares/lightning.svg" alt="Lightning Network"></div>
-        <h3>Lightning</h3>
-        <span class="pilar-tag">Bitcoin organico</span>
-        <p>Bitcoin nativo para pagos instantaneos. Sin tokens, sin intermediarios. Solo BTC moviendose a la velocidad de la luz.</p>
+  <!-- ── IDENTITY ── -->
+  <div class="hackathon-block">
+    <div class="hackathon-header">
+      <div class="hackathon-meta">
+        <div class="hackathon-num">Hackathon #2 · Abril 2026</div>
+        <div class="hackathon-name">🔐 IDENTITY</div>
+        <div class="hackathon-focus">Nostr Identity &amp; Social</div>
+        <div class="provisional-note">⚠ Resultados provisorios — pendiente publicación oficial</div>
       </div>
-
-      <div class="pilar-card">
-        <div class="pilar-icon"><img src="assets/pilares/nostr.svg" alt="Nostr"></div>
-        <h3>Nostr</h3>
-        <span class="pilar-tag">Hermano de Bitcoin</span>
-        <p>Nacio del mismo espiritu cypherpunk. Comunicacion descentralizada, identidad soberana y social sin censura.</p>
-      </div>
-
-      <div class="pilar-card">
-        <div class="pilar-icon"><img src="assets/pilares/liquid.svg" alt="Liquid Network"></div>
-        <h3>Liquid</h3>
-        <span class="pilar-tag">Optimizador L2</span>
-        <p>Sidechain federada que optimiza Bitcoin como medio de intercambio. Transacciones confidenciales y rapidas.</p>
-      </div>
-
-      <div class="pilar-card">
-        <div class="pilar-icon"><img src="assets/pilares/rsk.jpg" alt="Rootstock RSK"></div>
-        <h3>RSK</h3>
-        <span class="pilar-tag">Ethereum killer</span>
-        <p>Smart contracts con la seguridad de Bitcoin. Todo lo que Ethereum promete, sobre la red mas robusta del mundo.</p>
-      </div>
-
-      <div class="pilar-card">
-        <div class="pilar-icon"><img src="assets/pilares/ark.png" alt="Ark Protocol"></div>
-        <h3>Ark</h3>
-        <span class="pilar-tag">Optimizador L1</span>
-        <p>Optimiza transacciones directamente sobre la capa base. Pagos off-chain sin comprometer la soberania de L1.</p>
-      </div>
-
-      <div class="pilar-card">
-        <div class="pilar-icon"><img src="assets/pilares/spark.svg" alt="Spark"></div>
-        <h3>Spark</h3>
-        <span class="pilar-tag">L2 nativo</span>
-        <p>L2 de Bitcoin sin bridges ni wrappers. Pagos instantaneos y stablecoins nativos, interoperable con Lightning.</p>
-      </div>
-
-      <div class="pilar-card">
-        <div class="pilar-icon"><img src="assets/pilares/rgb.svg" alt="RGB Protocol"></div>
-        <h3>RGB</h3>
-        <span class="pilar-tag">Stablecoins en Bitcoin</span>
-        <p>Smart contracts y emision de stablecoins sobre Bitcoin y Lightning. Programabilidad sin comprometer privacidad.</p>
-      </div>
-
-      <div class="pilar-card">
-        <div class="pilar-icon"><img src="assets/pilares/taproot-assets.png" alt="Taproot Assets"></div>
-        <h3>Taproot Assets</h3>
-        <span class="pilar-tag">Stablecoins federados</span>
-        <p>Emision jerarquica de activos y stablecoins sobre Bitcoin y Lightning. Modelo federado de confianza.</p>
+      <div class="hackathon-prize-badge">
+        <div class="prize-number">1,000,000</div>
+        <div class="prize-label">sats en premios</div>
       </div>
     </div>
+
+    <table class="leaderboard">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Proyecto</th>
+          <th class="right th-score">Score</th>
+          <th class="right">Premio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="top3">
+          <td class="td-rank gold">#1</td>
+          <td><div class="td-project">Proof of Attendance</div><div class="td-team">Lo0ker-Noma</div></td>
+          <td class="td-score">7.49</td>
+          <td class="td-prize"><span class="prize-chip gold">400,000 sats</span></td>
+        </tr>
+        <tr class="top3">
+          <td class="td-rank silver">#2</td>
+          <td><div class="td-project">Stacktris</div><div class="td-team">landaverdend</div></td>
+          <td class="td-score">7.49</td>
+          <td class="td-prize"><span class="prize-chip silver">250,000 sats</span></td>
+        </tr>
+        <tr class="top3">
+          <td class="td-rank bronze">#3</td>
+          <td><div class="td-project">Hash21 Shop</div><div class="td-team">Abstract Lai · Ragnar</div></td>
+          <td class="td-score">7.07</td>
+          <td class="td-prize"><span class="prize-chip bronze">150,000 sats</span></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#4</td>
+          <td><div class="td-project">1 SAT a...</div><div class="td-team">unllamas · Jona</div></td>
+          <td class="td-score">7.00</td>
+          <td class="td-prize"><span class="prize-chip">100,000 sats</span></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#5</td>
+          <td><div class="td-project">BitByBit</div><div class="td-team">Anix · Llopo · Wander · Leon</div></td>
+          <td class="td-score">6.98</td>
+          <td class="td-prize"><span class="prize-chip">60,000 sats</span></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#6</td>
+          <td><div class="td-project">Digital card</div><div class="td-team">negr0</div></td>
+          <td class="td-score">6.83</td>
+          <td class="td-prize"><span class="prize-chip">40,000 sats</span></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#7</td>
+          <td><div class="td-project">Sweet Shots</div><div class="td-team">Lalo</div></td>
+          <td class="td-score">6.58</td>
+          <td class="td-prize"></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#8</td>
+          <td><div class="td-project">SatLotto V2</div><div class="td-team">Fierillo</div></td>
+          <td class="td-score">6.37</td>
+          <td class="td-prize"></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#9</td>
+          <td><div class="td-project">Wapu CLI</div><div class="td-team">Rocket · AndyCreed</div></td>
+          <td class="td-score">6.28</td>
+          <td class="td-prize"></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#10</td>
+          <td><div class="td-project">Streamsats</div><div class="td-team">Federico</div></td>
+          <td class="td-score">6.17</td>
+          <td class="td-prize"></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#11</td>
+          <td><div class="td-project">RelámPago</div><div class="td-team">Burgos</div></td>
+          <td class="td-score">5.92</td>
+          <td class="td-prize"></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#12</td>
+          <td><div class="td-project">AniRayo</div><div class="td-team">CapScabio</div></td>
+          <td class="td-score">5.85</td>
+          <td class="td-prize"></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#13</td>
+          <td><div class="td-project">SatsParty</div><div class="td-team">Cyberpunk</div></td>
+          <td class="td-score">5.42</td>
+          <td class="td-prize"></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#14</td>
+          <td><div class="td-project">NosTeach</div><div class="td-team">Fred · Langostero</div></td>
+          <td class="td-score">5.00</td>
+          <td class="td-prize"></td>
+        </tr>
+        <tr>
+          <td class="td-rank">#15</td>
+          <td><div class="td-project">Life Action Plan</div><div class="td-team">naranja</div></td>
+          <td class="td-score">4.83</td>
+          <td class="td-prize"></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-</section>
 
-<!-- Roadmap Section -->
-<section class="roadmap" id="roadmap">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-label">El programa</span>
-      <h2 class="section-title">8 meses de construcción</h2>
-      <p class="section-description">
-        Progresión estructurada. Cada mes profundiza en una temática.
-        Al final, tenés un portfolio completo.
-      </p>
-    </div>
-    
-    <div class="timeline">
-      <div class="timeline-line"></div>
-      
-      <div class="timeline-item" data-month="1">
-        <div class="timeline-marker">
-          <span class="month">MAR</span>
-        </div>
-        <div class="timeline-card">
-          <div class="card-icon">⚡</div>
-          <h3>FOUNDATIONS</h3>
-          <p class="card-focus">Lightning Payments Basics</p>
-          <span class="card-difficulty">⭐ Beginner</span>
-          <p class="card-description">Invoices, pagos, wallets. El ABC de Lightning Network.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item" data-month="2">
-        <div class="timeline-marker">
-          <span class="month">ABR</span>
-        </div>
-        <div class="timeline-card">
-          <div class="card-icon">🔐</div>
-          <h3>IDENTITY</h3>
-          <p class="card-focus">Nostr Identity & Social</p>
-          <span class="card-difficulty">⭐ Beginner</span>
-          <p class="card-description">Perfiles, keys, relays. Identidad descentralizada.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item" data-month="3">
-        <div class="timeline-marker">
-          <span class="month">MAY</span>
-        </div>
-        <div class="timeline-card">
-          <div class="card-icon">🛒</div>
-          <h3>COMMERCE</h3>
-          <p class="card-focus">Lightning Stores &amp; Checkout</p>
-          <span class="card-difficulty">⭐⭐ Intermediate</span>
-          <p class="card-description">Tiendas, productos, pagos recurrentes.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item" data-month="4">
-        <div class="timeline-marker">
-          <span class="month">JUN</span>
-        </div>
-        <div class="timeline-card">
-          <div class="card-icon">💜</div>
-          <h3>ZAPS</h3>
-          <p class="card-focus">Lightning + Nostr Integration</p>
-          <span class="card-difficulty">⭐⭐ Intermediate</span>
-          <p class="card-description">NIP-57. Value-for-value. Social payments.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item" data-month="5">
-        <div class="timeline-marker">
-          <span class="month">JUL</span>
-        </div>
-        <div class="timeline-card">
-          <div class="card-icon">📸</div>
-          <h3>MEDIA</h3>
-          <p class="card-focus">Decentralized Storage</p>
-          <span class="card-difficulty">⭐⭐⭐ Advanced</span>
-          <p class="card-description">Blossom, CDN descentralizado, media + Lightning.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item" data-month="6">
-        <div class="timeline-marker">
-          <span class="month">AGO</span>
-        </div>
-        <div class="timeline-card">
-          <div class="card-icon">🤖</div>
-          <h3>AI AGENTS</h3>
-          <p class="card-focus">Bots & Automation</p>
-          <span class="card-difficulty">⭐⭐⭐ Advanced</span>
-          <p class="card-description">Agentes autónomos, workflows, AI + Bitcoin.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item" data-month="7">
-        <div class="timeline-marker">
-          <span class="month">SEP</span>
-        </div>
-        <div class="timeline-card">
-          <div class="card-icon">🏗️</div>
-          <h3>INFRASTRUCTURE</h3>
-          <p class="card-focus">Nodes, Routing, Liquidity</p>
-          <span class="card-difficulty">⭐⭐⭐⭐ Expert</span>
-          <p class="card-description">Nodos, channels, liquidity management.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item" data-month="8">
-        <div class="timeline-marker">
-          <span class="month">OCT</span>
-        </div>
-        <div class="timeline-card final">
-          <div class="card-icon">🌐</div>
-          <h3>INTEGRATION</h3>
-          <p class="card-focus">Full-Stack Production Apps</p>
-          <span class="card-difficulty">⭐⭐⭐⭐ Expert</span>
-          <p class="card-description">Proyecto final. Todo integrado. Ready to launch.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-  <div class="container">
-    <div class="section-header">
-      <span class="section-label">Preguntas</span>
-      <h2 class="section-title">FAQ</h2>
-    </div>
-    
-    <div class="faq-grid">
-      <details class="faq-item">
-        <summary>¿Es presencial o remoto?</summary>
-        <p>Híbrido. Presencial en La Crypta (Buenos Aires) + remoto vía Discord.</p>
-      </details>
-      
-      <details class="faq-item">
-        <summary>¿Puedo participar desde otro país?</summary>
-        <p>Sí. El programa es global. Transmisión en vivo + mentores online.</p>
-      </details>
-      
-      <details class="faq-item">
-        <summary>¿Cuánto cuesta participar?</summary>
-        <p>Gratis. 100% gratuito.</p>
-      </details>
-      
-      <details class="faq-item">
-        <summary>¿Necesito un equipo?</summary>
-        <p>No. Podés venir solo y formar equipo, o traer el tuyo (máx 4 personas).</p>
-      </details>
-      
-      <details class="faq-item">
-        <summary>¿Los premios son en Bitcoin real?</summary>
-        <p>Sí. BTC real pagado vía Lightning Network. Instantáneo.</p>
-      </details>
-      
-      <details class="faq-item">
-        <summary>¿Qué pasa con mi código?</summary>
-        <p>Tu código es tuyo. Debe ser open source (MIT/Apache/GPL).</p>
-      </details>
-      
-      <details class="faq-item">
-        <summary>¿Necesito experiencia con Bitcoin?</summary>
-        <p>No. El programa empieza desde cero y progresa gradualmente.</p>
-      </details>
-      
-      <details class="faq-item">
-        <summary>¿Puedo participar en más de un hackathon?</summary>
-        <p>Sí. Recomendamos participar en todos para la progresión completa.</p>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- CTA Section -->
-<section class="cta-section">
-  <div class="container">
-    <div class="cta-content">
-      <h2>¿Listo para construir el futuro?</h2>
-      <p>El hackathon se mudó a su propio sitio. Todo está ahí.</p>
-      <a href="https://lacrypta.dev" target="_blank" class="btn btn-primary btn-large btn-glow">
-        Ir a lacrypta.dev ⚡
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <img src="https://raw.githubusercontent.com/lacrypta/branding/refs/heads/main/title/512-white-transparent.png" alt="La Crypta" height="40">
-        <p>La comunidad Bitcoin más grande de Argentina.</p>
-        <p class="footer-tagline">NOLI ME CALCARE</p>
-      </div>
-      
-      <div class="footer-links">
-        <h4>Links</h4>
-        <ul>
-          <li><a href="docs/reglas.html">Reglas</a></li>
-          <li><a href="docs/codigo-conducta.html">Código de conducta</a></li>
-          <li><a href="docs/roadmap-completo.md">Roadmap completo</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-links">
-        <h4>Comunidad</h4>
-        <ul>
-          <li><a href="https://discord.com/invite/SN8JNhMgvY" target="_blank">Discord</a></li>
-          <li><a href="https://github.com/lacrypta" target="_blank">GitHub</a></li>
-          <li><a href="https://twitter.com/LaCryptaOk" target="_blank">Twitter</a></li>
-          <li><a href="https://lacrypta.ar" target="_blank">lacrypta.ar</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-links">
-        <h4>Powered by</h4>
-        <ul>
-          <li>La Crypta</li>
-          <li>OpenClaw</li>
-          <li>LaWallet</li>
-        </ul>
-      </div>
-    </div>
-    
-    <div class="footer-bottom">
-      <p>© 2026 La Crypta · Open Source · MIT License</p>
-    </div>
-  </div>
-</footer>
-
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu">
-  <div class="mobile-menu-content">
-    <a href="hackathons.html" onclick="toggleMenu()" class="mobile-menu-highlight">⚡ Hackathons</a>
-    <a href="#jurado" onclick="toggleMenu()">Jurado AI</a>
-    <a href="#pilares" onclick="toggleMenu()">Pilares</a>
-    <a href="#roadmap" onclick="toggleMenu()">Roadmap</a>
-    <a href="#premios" onclick="toggleMenu()">Premios</a>
-    <a href="#faq" onclick="toggleMenu()">FAQ</a>
-    <a href="https://lacrypta.dev" target="_blank" class="btn btn-primary" onclick="toggleMenu()">
-      lacrypta.dev ⚡
+  <!-- bottom CTA -->
+  <div style="text-align:center; padding-top: 20px;">
+    <a href="https://lacrypta.dev" target="_blank" rel="noopener noreferrer" class="hero-cta" style="font-size:1.05rem; padding:16px 40px;">
+      Seguir participando en lacrypta.dev <span class="arrow">→</span>
     </a>
   </div>
 </div>
 
-<!-- Scripts -->
-<script>
-function toggleMenu() {
-  document.getElementById('mobileMenu').classList.toggle('active');
-  document.body.classList.toggle('menu-open');
-}
-
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
-    });
-  });
-});
-
-// Navbar scroll effect
-window.addEventListener('scroll', () => {
-  const navbar = document.querySelector('.navbar');
-  if (window.scrollY > 50) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
-  }
-});
-
-// Animate timeline items on scroll
-const observerOptions = {
-  threshold: 0.2,
-  rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, observerOptions);
-
-document.querySelectorAll('.timeline-item, .judge-card, .pilar-card, .benefit-card').forEach(el => {
-  observer.observe(el);
-});
-</script>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-links">
+    <a href="https://lacrypta.dev" target="_blank" rel="noopener noreferrer">lacrypta.dev</a>
+    <a href="https://discord.com/invite/SN8JNhMgvY" target="_blank" rel="noopener noreferrer">Discord</a>
+    <a href="https://github.com/lacrypta" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a href="https://twitter.com/LaCryptaOk" target="_blank" rel="noopener noreferrer">Twitter</a>
+    <a href="docs/reglas.html">Reglas</a>
+    <a href="docs/codigo-conducta.html">Código de conducta</a>
+  </div>
+  <p>© 2026 La Crypta · Open Source · MIT License</p>
+</footer>
 
 </body>
 </html>
-<!-- Updated Sat Feb  7 05:22:55 PM -03 2026 -->
